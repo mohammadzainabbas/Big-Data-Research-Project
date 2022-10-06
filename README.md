@@ -1,12 +1,7 @@
 ## Big Data Research Project 👨🏻‍💻
 
-#
-
 ![GitHub contributors](https://img.shields.io/github/contributors/mohammadzainabbas/Big-Data-Research-Project)
-<!-- ![GitHub stars](https://img.shields.io/github/stars/mohammadzainabbas/Big-Data-Research-Project?style=social) -->
 ![GitHub activity](https://img.shields.io/github/commit-activity/w/mohammadzainabbas/Big-Data-Research-Project?logoColor=brightgreen)
-
-#
 
 ### Table of contents
 
