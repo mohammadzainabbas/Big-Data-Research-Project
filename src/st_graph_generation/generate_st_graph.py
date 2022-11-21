@@ -24,7 +24,6 @@ from utils.plots import plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
 
 from sort import *
- 
 
 def get_frame() -> Generator[str, None, None]:
     """Generator of all the frames in the current directory.
