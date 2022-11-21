@@ -2,6 +2,9 @@ from os import getcwd, listdir
 from os.path import join, isfile, isdir, exists, abspath, dirname, basename
 from typing import Generator
 
+import cv2
+from mo 
+
 def get_frame() -> Generator[str, None, None]:
     """Generator of all the frames in the current directory.
     """
