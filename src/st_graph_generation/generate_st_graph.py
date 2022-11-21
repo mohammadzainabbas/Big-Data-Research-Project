@@ -12,7 +12,7 @@ import torch.backends.cudnn as cudnn
 from numpy import random
 from sys import path
 
-path.append("~/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking/")
+path.append("~/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
@@ -34,6 +34,7 @@ def get_frame() -> Generator[str, None, None]:
             yield file
 
 def main() -> None:
+    print("Starting the program")
 
 
 
