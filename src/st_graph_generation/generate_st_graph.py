@@ -26,11 +26,6 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 from sort import *
 
 def get_frame() -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
-    """Generator of all the frames in the current directory.
-    """
-    for file in listdir(getcwd()):
-        if isfile(file) and file.endswith('.png'):
-            yield file
 
 def main() -> None:
     print("Starting the program")
