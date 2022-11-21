@@ -26,6 +26,9 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 from sort import *
 
 def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
+    if not exists(video_path): raise FileNotFoundError("Video file not found")
+
+    
 
 
 def main() -> None:
