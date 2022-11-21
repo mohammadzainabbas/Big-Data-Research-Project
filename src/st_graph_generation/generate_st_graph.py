@@ -54,7 +54,10 @@ def main() -> None:
 
     dataset = get_frames(video_path)
 
-    for 
+    for path, img, im0s, vid_cap in dataset:
+        print_log(f"Processing image: {path}")
+        img = torch.from_numpy(img).to(device)
+        img = img.float()
 
     print_log(f"{type(dataset) = }")
 
