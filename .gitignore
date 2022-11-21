@@ -132,3 +132,5 @@ dmypy.json
 commit.sh
 update_git.py
 .DS_Store
+
+data/
