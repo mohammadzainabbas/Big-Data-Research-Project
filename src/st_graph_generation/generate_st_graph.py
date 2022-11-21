@@ -14,7 +14,7 @@ from sys import path
 
 path.append("~/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
 
-from ..object_detection.yolov7_with_object_tracking.models.experimental import attempt_load
+from yolov7_with_object_tracking.models.experimental import attempt_load
 
 
 # from models.experimental import attempt_load
