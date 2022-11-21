@@ -12,6 +12,8 @@ import torch.backends.cudnn as cudnn
 from numpy import random
 from sys import path
 
+from stg_utils import print_log, print_error
+
 path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
 
 from models.experimental import attempt_load, Ensemble
@@ -38,9 +40,8 @@ def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # htt
 
 
 def main() -> None:
-    print("Starting the program")
+    print_log("Starting the program")
 
-    print_log
 
 
 
