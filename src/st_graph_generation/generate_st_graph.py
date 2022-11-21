@@ -1,6 +1,6 @@
 from os import getcwd, listdir
 from os.path import join, isfile, isdir, exists, abspath, dirname, basename
-from typing import Generator
+from typing import Generator, Union, List, Tuple, Dict, Any
 
 import cv2
 import argparse
@@ -25,7 +25,8 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 
 from sort import *
 
-def get_frame() -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
+def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
+
 
 def main() -> None:
     print("Starting the program")
