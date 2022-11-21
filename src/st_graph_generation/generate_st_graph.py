@@ -25,12 +25,18 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 
 from sort import *
 
+
+
 def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
     if not exists(video_path): raise FileNotFoundError("Video file not found")
 
     set_logging()
     device = select_device()
-    
+    half = device.type != 'cpu'  # half precision only supported on CUDA
+
+    # Load model
+    model = attempt_load(weights, map_location=device)  # load FP32 model
+    model = TracedModel(torch.jit.load(weights, map_location=device))
 
 
 
