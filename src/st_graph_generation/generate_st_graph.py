@@ -28,7 +28,7 @@ from ..object_detection.yolov7_with_object_tracking.models.experimental import a
 
 # from sort import *
 
-def get_frame() -> Generator[str, None, None]:
+def get_frame() -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
     """Generator of all the frames in the current directory.
     """
     for file in listdir(getcwd()):
