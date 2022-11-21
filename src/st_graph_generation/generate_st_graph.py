@@ -36,8 +36,6 @@ def get_frames(video_path: Union[Path, str]) -> Generator[str, None, None]: # ht
     if not exists(video_path): raise FileNotFoundError("Video file not found")
     return LoadImages(video_path, img_size=640)
 
-
-
 def main() -> None:
     print_log("Starting the program")
 
@@ -53,7 +51,9 @@ def main() -> None:
     data_dir = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/data")
     video_path = join(data_dir, "street.mp4")
 
-    dataset = get_frame(video_path)
+    dataset = get_frames(video_path)
+
+    print_log(f"{type(dataset) = }")
 
 
 
