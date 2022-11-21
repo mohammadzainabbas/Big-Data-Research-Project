@@ -29,8 +29,9 @@ def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # htt
     if not exists(video_path): raise FileNotFoundError("Video file not found")
 
     set_logging()
-    device = select_device("")
+    device = select_device()
     
+
 
 
 def main() -> None:
