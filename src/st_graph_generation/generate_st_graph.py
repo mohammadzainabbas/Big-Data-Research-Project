@@ -15,18 +15,15 @@ from sys import path
 path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
 
 from models.experimental import attempt_load
+from utils.datasets import LoadStreams, LoadImages
+from utils.general import check_img_size, check_requirements, \
+                check_imshow, non_max_suppression, apply_classifier, \
+                scale_coords, xyxy2xywh, strip_optimizer, set_logging, \
+                increment_path
+from utils.plots import plot_one_box
+from utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
 
-
-# from models.experimental import attempt_load
-# from utils.datasets import LoadStreams, LoadImages
-# from utils.general import check_img_size, check_requirements, \
-#                 check_imshow, non_max_suppression, apply_classifier, \
-#                 scale_coords, xyxy2xywh, strip_optimizer, set_logging, \
-#                 increment_path
-# from utils.plots import plot_one_box
-# from utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
-
-# from sort import *
+from sort import *
 
 def get_frame() -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
     """Generator of all the frames in the current directory.
