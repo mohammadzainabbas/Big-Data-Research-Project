@@ -40,6 +40,8 @@ def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # htt
 def main() -> None:
     print("Starting the program")
 
+    print_log
+
 
 
 
