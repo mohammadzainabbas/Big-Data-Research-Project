@@ -44,10 +44,14 @@ def main() -> None:
 
     print_log("Loading the model")
     model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking/yolov7.pt")
+    
     model = load_model(model_path)
     stride = int(model.stride.max())  # model stride
     imgsz = check_img_size(imgsz, s=stride)  # check img_size
+
     print_log("Model loaded")
+
+    
 
 
 
