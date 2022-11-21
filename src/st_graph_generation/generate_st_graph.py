@@ -10,6 +10,9 @@ import cv2
 import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
+from sys import path
+
+
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
