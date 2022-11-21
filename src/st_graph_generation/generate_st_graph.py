@@ -12,9 +12,9 @@ import torch.backends.cudnn as cudnn
 from numpy import random
 from sys import path
 
-path.append("~/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
+# path.append("~/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
 
-from yolov7_with_object_tracking.models.experimental import attempt_load
+from ..object_detection.yolov7_with_object_tracking.models.experimental import attempt_load
 
 
 # from models.experimental import attempt_load
