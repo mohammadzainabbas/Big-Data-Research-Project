@@ -32,10 +32,9 @@ def load_model(model_path: str) -> Ensemble:
     device = select_device()
     return attempt_load(model_path, map_location=device), device  # load FP32 model
 
-def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
+def get_frames(video_path: Union[Path, str]) -> Generator[str, None, None]: # https://stackoverflow.com/questions/42531143/how-to-type-hint-a-generator-in-python-3
     if not exists(video_path): raise FileNotFoundError("Video file not found")
-
-    dataset = LoadImages(video_path, img_size=640)
+    return LoadImages(video_path, img_size=640)
 
 
 
@@ -51,8 +50,10 @@ def main() -> None:
 
     print_log("Model loaded")
 
+    data_dir = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/data")
+    video_path = join(data_dir, "street.mp4")
 
-
+    dataset = get_frame(video_path)
 
 
 
