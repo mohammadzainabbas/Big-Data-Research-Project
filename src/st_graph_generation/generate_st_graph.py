@@ -42,9 +42,11 @@ def get_frame(video_path: Union[Path, str]) -> Generator[str, None, None]: # htt
 def main() -> None:
     print_log("Starting the program")
 
+    print_log("Loading the model")
     model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking/yolov7.pt")
     model = load_model(model_path)
-    
+
+
 
 
 
