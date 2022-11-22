@@ -11,7 +11,7 @@ import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
 from sys import path
-
+from dataclasses import dataclass, field
 from stg_utils import print_log, print_error
 
 path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
@@ -42,6 +42,7 @@ def main() -> None:
     print_log("Loading the model")
     model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking/yolov7.pt")
     imgsz = 640
+    delta_time = tuple(1, 5) # take 1 frame every 5 frames
 
     model, device = load_model(model_path)
     stride = int(model.stride.max())  # model stride
@@ -53,11 +54,13 @@ def main() -> None:
     video_path = join(data_dir, "street.mp4")
 
     dataset = get_frames(video_path)
+    print_log(f"{len(dataset) = }")
+    print_log(f"{dataset.nframes = }")
 
-    for path, img, im0s, vid_cap in dataset:
-        print_log(f"Processing image: {path}")
-        img = torch.from_numpy(img).to(device)
-        img = img.float()
+    # for path, img, im0s, vid_cap in dataset:
+    #     print_log(f"Processing image: {path}")
+    #     img = torch.from_numpy(img).to(device)
+    #     img = img.float()
 
     print_log(f"{type(dataset) = }")
 
