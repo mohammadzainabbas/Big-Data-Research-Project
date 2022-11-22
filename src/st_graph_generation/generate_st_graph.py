@@ -55,7 +55,7 @@ def main() -> None:
 
     """
     (1/10) * 30 fps = 3 fps
-    ()
+    (1/10) * 332 frames = 33 frames
     """
 
     dataset = get_frames(video_path)
