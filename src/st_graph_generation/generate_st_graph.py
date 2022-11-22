@@ -67,7 +67,7 @@ def main() -> None:
     for path, img, im0s, vid_cap in dataset:
         i += 1
         print()
-        if i % delta_time[1] != delta_time[0]: continue
+        if i % delta_time[1] != 0: continue
         print_log(f"Processing ({i}/{params['nframes']}) image...\n")
         # img = torch.from_numpy(img).to(device)
         # img = img.float()
