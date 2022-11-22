@@ -43,6 +43,10 @@ def main() -> None:
     model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking/yolov7.pt")
     imgsz = 640
     delta_time = (1, 10) # take 1 frame every 10 frames
+    # """
+    # (1/10) * 30 fps = 3 fps
+    # (1/10) * 332 frames = 33 frames
+    # """
 
     model, device = load_model(model_path)
     stride = int(model.stride.max())  # model stride
@@ -53,10 +57,6 @@ def main() -> None:
     data_dir = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/data")
     video_path = join(data_dir, "street.mp4")
 
-    """
-    (1/10) * 30 fps = 3 fps
-    (1/10) * 332 frames = 33 frames
-    """
 
     dataset = get_frames(video_path)
     params = get_video_params(video_path)
