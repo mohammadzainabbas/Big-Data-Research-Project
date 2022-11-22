@@ -47,9 +47,6 @@ def main() -> None:
     # (1/10) * 30 fps = 3 frames (1 second)
     # (1/10) * 302 frames = 30 frames (10 seconds)
     # """
-
-Int(302 / (1/10 * 302))
-
     delta_time = (1, 10) # take 1 frame every 10 frames
 
     model, device = load_model(model_path)
