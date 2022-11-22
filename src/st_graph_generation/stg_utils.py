@@ -13,21 +13,7 @@ def get_video_params(video_path: Union[Path, str]) -> int:
         "width": int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
         "height": int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)),
         "nframes": int(cap.get(cv2.CAP_PROP_FRAME_COUNT)),
-        "fps": cap.get(cv2.CAP_PROP_FPS)
+        "fps": cap.get(cv2.CAP_PROP_FPS),
     })
-    cap.release()
-    return params
-
-def get_video_params_cap(cap):
-    params = dict()
-    params['width'] = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    params['height'] = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    params['nframes'] = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    params['fps'] = cap.get(cv2.CAP_PROP_FPS)
-    return params
-
-def get_video_params(fname):
-    cap = cv2.VideoCapture(fname)
-    params = get_video_params_cap(cap)
     cap.release()
     return params
