@@ -68,7 +68,7 @@ def main() -> None:
         i += 1
         print()
         if i % int(delta_time[1]/delta_time[0]) != 0: continue
-        print_log(f"Processing ({i}/{params['nframes']}) image...\n")
+        print_log(f"Processing ({i}/{params['nframes']}) frame...\n")
         total_processed += 1
         # img = torch.from_numpy(img).to(device)
         # img = img.float()
