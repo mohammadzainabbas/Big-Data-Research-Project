@@ -45,7 +45,7 @@ def main() -> None:
 
     # """
     # (1/10) * 30 fps = 3 fps
-    # (1/10) * 332 frames = 33 frames
+    # (1/10) * 302 frames = 30 frames
     # """
     delta_time = (1, 10) # take 1 frame every 10 frames
 
