@@ -70,6 +70,8 @@ def main() -> None:
         print_log(f"Processing ({i}/{params['nframes']}) image...\n")
         # img = torch.from_numpy(img).to(device)
         # img = img.float()
+    
+    print_log(f"Total processed frames: {i}")
 
 
     print_log(f"{type(dataset) = }")
