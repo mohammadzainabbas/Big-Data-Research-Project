@@ -48,7 +48,7 @@ def main() -> None:
     # (1/10) * 302 frames = 30 frames (10 seconds)
     # """
 
-302 / (1/10 * 302) 
+int(302 / (1/10 * 302))
 
     delta_time = (1, 10) # take 1 frame every 10 frames
 
