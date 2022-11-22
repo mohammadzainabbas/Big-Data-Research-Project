@@ -53,6 +53,11 @@ def main() -> None:
     data_dir = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/data")
     video_path = join(data_dir, "street.mp4")
 
+    """
+    (1/10) * 30 fps = 3 fps
+    ()
+    """
+
     dataset = get_frames(video_path)
     params = get_video_params(video_path)
     print_log(f"{len(dataset) = }")
