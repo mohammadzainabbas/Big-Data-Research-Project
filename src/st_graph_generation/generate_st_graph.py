@@ -48,7 +48,7 @@ def main() -> None:
     # (1/10) * 302 frames = 30 frames (10 seconds)
     # """
     # delta_time = (1, 10) # take 1 frame every 10 frames
-    delta_time = (2, 5) # take 1 frame every 10 frames
+    delta_time = (2, 6) # take 1 frame every 10 frames
 
     model, device = load_model(model_path)
     stride = int(model.stride.max())  # model stride
