@@ -8,8 +8,15 @@ def print_error(text: str) -> None: print(f"[ error ] {text}")
 
 def get_video_params(video_path: Union[Path, str]) -> int:
     if not exists(video_path): raise FileNotFoundError("Video file not found")
-    return cv2.VideoCapture(video_path).get(cv2.CAP_PROP_FRAME_COUNT)
-    return cv2.VideoCapture(video_path).get(cv2.CAP_PROP_FRAME_COUNT)
+    cap = cv2.VideoCapture(video_path)
+    params = {
+        "width": int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+        "height": int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)),
+        "nframes": int(cap.get(cv2.CAP_PROP_FRAME_COUNT)),
+        "fps": cap.get(cv2.CAP_PROP_FPS)
+    }
+    cap.release()
+    return params
 
 def get_video_params_cap(cap):
     params = dict()
