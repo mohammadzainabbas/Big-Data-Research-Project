@@ -57,7 +57,7 @@ def main() -> None:
     params = get_video_params(video_path)
     print_log(f"{len(dataset) = }")
     print_log(f"{dataset.nframes = }")
-    print_log(f"{params['nframes'] = }")
+    print_log(f"{params = }")
 
     # for path, img, im0s, vid_cap in dataset:
     #     print_log(f"Processing image: {path}")
