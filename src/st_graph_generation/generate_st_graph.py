@@ -64,7 +64,7 @@ def main() -> None:
     print_log(f"{dataset.nframes = }")
     print_log(f"{params = }")
     i = 0
-    for path, img, im0s, vid_cap in dataset:
+    for idx, path, img, im0s, vid_cap in enumerate(dataset):
         print_log(f"Processing image: {path}")
         img = torch.from_numpy(img).to(device)
         img = img.float()
