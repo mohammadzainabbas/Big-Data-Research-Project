@@ -6,7 +6,7 @@ import cv2
 def print_log(text: str) -> None: print(f"[ log ] {text}")
 def print_error(text: str) -> None: print(f"[ error ] {text}")
 
-def get_video_params(video_path: Union[Path, str]) -> int:
+def get_video_params(video_path: Union[Path, str]) -> dict:
     if not exists(video_path): raise FileNotFoundError("Video file not found")
     cap = cv2.VideoCapture(video_path)
     params = dict({
