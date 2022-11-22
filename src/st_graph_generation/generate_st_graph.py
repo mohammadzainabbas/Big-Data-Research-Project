@@ -42,11 +42,12 @@ def main() -> None:
     print_log("Loading the model")
     model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking/yolov7.pt")
     imgsz = 640
-    delta_time = (1, 10) # take 1 frame every 10 frames
+
     # """
     # (1/10) * 30 fps = 3 fps
     # (1/10) * 332 frames = 33 frames
     # """
+    delta_time = (1, 10) # take 1 frame every 10 frames
 
     model, device = load_model(model_path)
     stride = int(model.stride.max())  # model stride
@@ -57,17 +58,16 @@ def main() -> None:
     data_dir = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/data")
     video_path = join(data_dir, "street.mp4")
 
-
     dataset = get_frames(video_path)
     params = get_video_params(video_path)
     print_log(f"{len(dataset) = }")
     print_log(f"{dataset.nframes = }")
     print_log(f"{params = }")
 
-    # for path, img, im0s, vid_cap in dataset:
-    #     print_log(f"Processing image: {path}")
-    #     img = torch.from_numpy(img).to(device)
-    #     img = img.float()
+    for path, img, im0s, vid_cap in dataset:
+        print_log(f"Processing image: {path}")
+        img = torch.from_numpy(img).to(device)
+        img = img.float()
 
     print_log(f"{type(dataset) = }")
 
