@@ -89,7 +89,7 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
         color = colors[cat]
         
         if not opt.nobbox:
-            cv2.circle(img, centroid, , (x2, y2), color, tl)
+            cv2.circle(img, centroid, 5, (x2, y2), color, tl)
 
         if not opt.nolabel:
             label = f"Node({str(id)}): {names[cat]} {confidences[i]:.2f}" if identities is not None else  f'{names[cat]} {confidences[i]:.2f}'
