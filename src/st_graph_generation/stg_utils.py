@@ -19,3 +19,9 @@ def get_video_params(video_path: Union[Path, str]) -> dict:
     })
     cap.release()
     return params
+
+def dict_with_attributes(d: Dict[str, Any]) -> Namespace:
+    """
+    Convert a dictionary to a class with attributes
+    """
+    return Namespace(**d)
