@@ -95,6 +95,13 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
             c2 = x1 + t_size[0], y1 - t_size[1] - 3
             cv2.circle(img, (x1, y1), c2, color, -1, cv2.LINE_AA)  # filled
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
+    # For edges
+    for node1 in graph.nodes:
+        for node2 in graph.nodes:
+            if node1.id != node2.id:
+                dist = ((node1.centroid[0] - node2.centroid[0])**2 + (node1.centroid[1] - node2.centroid[1])**2)**0.5
+                graph.add_edge(node1, node2, weight=dist)
+                
     return img, graph
 
 
