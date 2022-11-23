@@ -96,7 +96,6 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
             tf = max(tl - 1, 1)  # font thickness
             t_size = cv2.getTextSize(label, 0, fontScale=tl / 3, thickness=tf)[0]
             c2 = x1 + t_size[0], y1 - t_size[1] - 3
-            cv2.circle(img, centroid, 5 * tl, color, tl)
             cv2.circle(img, centroid, c2, color, -1, cv2.LINE_AA)  # filled
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
     
