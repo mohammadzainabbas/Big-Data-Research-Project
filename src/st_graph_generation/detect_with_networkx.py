@@ -254,11 +254,6 @@ def detect(save_img=False):
                     im0, graph = generate_spatial_graph(im0, bbox_xyxy, identities, categories, confidences, names, colors)
                 ######################################################
                 # im0 = draw_boxes(im0, bbox_xyxy, identities, categories, confidences, names, colors)
-                im0 = draw_boxes(im0, bbox_xyxy, identities, categories, confidences, names, colors)
-
-                
-                    
-                
                 
             # Print time (inference + NMS)
             print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
@@ -300,8 +295,8 @@ def detect(save_img=False):
     if save_txt or save_img:
         s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ''
         #print(f"Results saved to {save_dir}{s}")
-
     print(f'Done. ({time.time() - t0:.3f}s)')
+    return graph
 
 
 if __name__ == '__main__':
