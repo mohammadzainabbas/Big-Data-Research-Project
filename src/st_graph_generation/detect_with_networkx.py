@@ -50,7 +50,7 @@ def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, 
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
     return img
 
-@dataclass
+@dataclass(frozen=True)
 class Node:
     id: int = field(default=0)
     x1: int = field(default=0)
@@ -101,7 +101,7 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
             if node1.id != node2.id:
                 dist = ((node1.centroid[0] - node2.centroid[0])**2 + (node1.centroid[1] - node2.centroid[1])**2)**0.5
                 graph.add_edge(node1, node2, weight=dist)
-                
+
     return img, graph
 
 
