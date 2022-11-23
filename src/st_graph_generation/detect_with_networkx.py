@@ -65,17 +65,7 @@ class Node:
         self.centroid = ((self.x1 + self.x2) // 2, (self.y1 + self.y2) // 2)
 @dataclass
 class Edge:
-    weight: float = field(default=0)
-    x1: int = field(default=0)
-    y1: int = field(default=0)
-    x2: int = field(default=0)
-    y2: int = field(default=0)
-    conf: float = field(default=float(0))
-    detclass: int = field(default=0)
-    class_name: str = field(default="")
-    centroid: tuple = field(init=False)
-    def __post_init__(self):
-        self.centroid = ((self.x1 + self.x2) // 2, (self.y1 + self.y2) // 2)
+    weight: Union[float, int] = field(default=0)
 
 def generate_spatial_graph(img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None):
     """
