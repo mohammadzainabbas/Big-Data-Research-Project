@@ -161,6 +161,7 @@ def detect(save_img=False):
     ###################################
     startTime = 0
     ###################################
+    graphs = list()
     for path, img, im0s, vid_cap in dataset:
         img = torch.from_numpy(img).to(device)
         img = img.half() if half else img.float()  # uint8 to fp16/32
@@ -188,8 +189,6 @@ def detect(save_img=False):
         # Apply Classifier
         if classify:
             pred = apply_classifier(pred, modelc, img, im0s)
-
-        graphs = list()
 
         # Process detections
         for i, det in enumerate(pred):  # detections per image
