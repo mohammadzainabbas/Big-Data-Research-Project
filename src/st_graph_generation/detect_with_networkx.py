@@ -46,6 +46,50 @@ def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, 
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
     return img
 
+@dataclass
+class Node:
+    id: int = field(default=0)
+    x1: int = field(default=0)
+    y1: int = field(default=0)
+    x2: int = field(default=0)
+    y2: int = field(default=0)
+    conf: float = field(default=float(0))
+    detclass: int = field(default=0)
+    class_name: str = field(default="")
+    centroid: tuple = field(init=False)
+    def __post_init__(self):
+        self.centroid = ((self.x1 + self.x2) // 2, (self.y1 + self.y2) // 2)
+
+def generate_spatial_graph(img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None):
+    """
+    Construct a spatial graph from the bounding boxes, identities, categories, confidences, names and colors
+    """
+    graph = nx.Graph()
+    for i, box in enumerate(bbox):
+        x1, y1, x2, y2 = [int(i) for i in box]
+
+        cat = int(categories[i]) if categories is not None else 0
+        id = int(identities[i]) if identities is not None else 0
+        conf = confidences[i] if confidences is not None else 0
+        class_name = names[cat]
+        graph.add_node(Node(id, x1, y1, x2, y2, conf, cat, class_name))
+
+        tl = opt.thickness or round(0.002 * (img.shape[0] + img.shape[1]) / 2) + 1  # line/font thickness
+
+        color = colors[cat]
+        
+        if not opt.nobbox:
+            cv2.circle(img, (x1, y1), (x2, y2), color, tl)
+
+        if not opt.nolabel:
+            label = f"Node({str(id)}): {names[cat]} {confidences[i]:.2f}" if identities is not None else  f'{names[cat]} {confidences[i]:.2f}'
+            tf = max(tl - 1, 1)  # font thickness
+            t_size = cv2.getTextSize(label, 0, fontScale=tl / 3, thickness=tf)[0]
+            c2 = x1 + t_size[0], y1 - t_size[1] - 3
+            cv2.circle(img, (x1, y1), c2, color, -1, cv2.LINE_AA)  # filled
+            cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
+    return img, graph
+
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
