@@ -235,6 +235,25 @@ def detect(save_img=False):
                     categories = dets_to_sort[:, 5]
                     confidences = dets_to_sort[:, 4]
                 
+                ######################################################
+                is_graph = True
+                graph = None
+                if is_graph:
+                    
+                    if opt.track:
+                        bbox_xyxy = tracked_dets[:,:4]
+                        identities = tracked_dets[:, 8]
+                        categories = tracked_dets[:, 4]
+                        confidences = tracked_dets[:, 5]
+                    else:
+                        bbox_xyxy = dets_to_sort[:,:4]
+                        identities = [f"{x}_{dataset.frame}" for x in range(len(dets_to_sort))]
+                        categories = dets_to_sort[:, 5]
+                        confidences = dets_to_sort[:, 4]
+                    
+                    im0, graph = generate_spatial_graph(im0, bbox_xyxy, identities, categories, confidences, names, colors)
+                ######################################################
+                # im0 = draw_boxes(im0, bbox_xyxy, identities, categories, confidences, names, colors)
                 im0 = draw_boxes(im0, bbox_xyxy, identities, categories, confidences, names, colors)
 
                 
