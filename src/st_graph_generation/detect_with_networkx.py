@@ -60,10 +60,10 @@ class Node:
     conf: float = field(default=float(0))
     detclass: int = field(default=0)
     class_name: str = field(default="")
-    centroid: tuple = field(init=False)
-    def __post_init__(self):
-        self.centroid = ((self.x1 + self.x2) // 2, (self.y1 + self.y2) // 2)
-@dataclass
+    centroid: tuple = field(default=(0, 0))
+    # def __post_init__(self):
+    #     self.centroid = ((self.x1 + self.x2) // 2, (self.y1 + self.y2) // 2)
+@dataclass(frozen=True)
 class Edge:
     weight: Union[float, int] = field(default=0)
 
