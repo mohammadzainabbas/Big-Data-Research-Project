@@ -74,6 +74,7 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
     graph = nx.Graph()
     for i, box in enumerate(bbox):
         x1, y1, x2, y2 = [int(i) for i in box]
+        centroid = ((x1 + x2) // 2, (y1 + y2) // 2)
 
         cat = int(categories[i]) if categories is not None else 0
         id = int(identities[i]) if identities is not None else 0
