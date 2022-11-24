@@ -27,8 +27,10 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 from sort import *
 
 
-"""Function to Draw Bounding boxes"""
 def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None):
+    """
+    Function to Draw Bounding boxes
+    """
     for i, box in enumerate(bbox):
         x1, y1, x2, y2 = [int(i) for i in box]
         tl = opt.thickness or round(0.002 * (img.shape[0] + img.shape[1]) / 2) + 1  # line/font thickness
