@@ -6,6 +6,7 @@
 ### Table of contents
 
 - [Introduction](#introduction)
+- [Setup](#setup)
 
 #
 
@@ -14,5 +15,23 @@
 ### 1. Introduction
 
 __`Data drives the world.`__ Nowadays, most of the data (_structured_ or _unstructured_) can be analysed as a graph. Today, many practical computing problems concern large graphs. Standard examples include the Web graph and various social networks. The scale of these graphs (_in some cases billions of vertices, trillions of edges_) poses challenges to their efficient processing.
+
+#
+
+<a id="setup" />
+
+### 2. Setup
+
+In order to start, we'd recommend you to clone with all the submodule(s), simply run:
+
+```bash
+git clone --recurse-submodules -j8 https://github.com/mohammadzainabbas/Big-Data-Research-Project.git
+```
+
+or clone without the submodule(s), just run:
+
+```bash
+git clone https://github.com/mohammadzainabbas/Big-Data-Research-Project.git
+```
 
 #
