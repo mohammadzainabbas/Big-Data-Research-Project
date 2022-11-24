@@ -100,6 +100,8 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
             cv2.circle(img, centroid, tf * 5, color, -1, cv2.LINE_AA)  # filled
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
     
+    line_color = [0, 0, 0]
+    line_thickness = 1
     # Add edges to the graph
     for node1 in graph.nodes:
         for node2 in graph.nodes:
