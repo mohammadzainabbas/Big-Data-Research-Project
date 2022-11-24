@@ -1,3 +1,6 @@
 [submodule "src/object_detection/yolov7_with_object_tracking"]
-	path = src/object_detection/yolov7_with_object_tracking
+	path = src/object_detection/
+	url = https://github.com/mohammadzainabbas/yolov7_with_object_tracking.git
+[submodule "src/object_detection"]
+	path = src/object_detection
 	url = https://github.com/mohammadzainabbas/yolov7_with_object_tracking.git
