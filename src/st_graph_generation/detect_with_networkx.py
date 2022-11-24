@@ -105,6 +105,7 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
         for node2 in graph.nodes:
             if node1.id == node2.id: continue
             graph.add_edge(node1, node2, weight=distance.euclidean(node1.centroid, node2.centroid))
+            cv2.line(img, node1.centroid, node2.centroid, (0, 0, 255), 2)
 
     return img, graph
 
