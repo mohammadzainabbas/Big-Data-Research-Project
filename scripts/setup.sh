@@ -1,7 +1,9 @@
 #! /bin/bash
 
 log() {
-    echo "[ log ]: $1"
+    echo "[ log ] $1"
 }
 
-log "Starting setup"
+log "Starting setup !!"
+
+log "Installing dependencies"
