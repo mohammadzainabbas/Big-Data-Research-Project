@@ -53,7 +53,7 @@ def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, 
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
     return img
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class Node:
     id: int = field(default=0)
     x1: int = field(default=0)
@@ -64,9 +64,8 @@ class Node:
     detclass: int = field(default=0)
     class_name: str = field(default="")
     centroid: tuple = field(default=(0, 0))
-    # def __post_init__(self):
-    #     self.centroid = ((self.x1 + self.x2) // 2, (self.y1 + self.y2) // 2)
-@dataclass(frozen=True)
+
+@dataclass(unsafe_hash=True)
 class Edge:
     weight: Union[float, int] = field(default=0)
 
