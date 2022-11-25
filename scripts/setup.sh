@@ -73,16 +73,6 @@ install_git() {
     fi
 }
 
-setup_tpcds() {
-    rm -rf ../tpcds-kit
-    log "Cloning 'tpcds-kit' from github ..."
-    git clone https://github.com/gregrahn/tpcds-kit.git ../tpcds-kit &> /dev/null
-    cd ../tpcds-kit/tools > /dev/null
-    log "Running make OS=MACOS ..."
-    make OS=MACOS &> /dev/null
-    cd - > /dev/null
-}
-
 install_apache_spark() {
     if [ ! $(type -p spark-submit) ]; then
         error "'apache-spark' not found. Installing it now ..."
