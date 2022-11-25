@@ -79,7 +79,9 @@ setup_project() {
 
 log "Starting Setup for BDRP !!!"
 
+log "Checking for 'conda' ..."
 check_conda
+log "Creating a new 'conda' env ..."
 create_conda_env
 setup_project
 
