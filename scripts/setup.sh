@@ -73,6 +73,10 @@ create_conda_env() {
     conda activate $env_name &> /dev/null || echo "" > /dev/null
 }
 
+setup_project() {
+    pip install -e . || error "Unable to install project dependencies ..."
+}
+
 log "Starting Setup Service"
 
 check_conda
