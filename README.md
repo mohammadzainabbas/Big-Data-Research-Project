@@ -34,4 +34,10 @@ or clone without the submodule(s), just run:
 git clone https://github.com/mohammadzainabbas/Big-Data-Research-Project.git
 ```
 
+and then run the following to setup env and installing the package locally:
+
+```bash
+sh scripts/setup.sh
+```
+
 #
