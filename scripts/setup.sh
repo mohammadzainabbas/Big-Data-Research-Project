@@ -100,9 +100,9 @@ conda_init() {
 
 install_conda() {
     if [ ! $(type -p conda) ]; then
-        fatal_error "'conda' not found. Installing it now ..."
+        fatal_error "'conda' not found. Please install it first and re-try ..."
     else
-        log "'anaconda' found ..."
+        log "'conda' found ..."
     fi
 }
 
