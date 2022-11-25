@@ -77,7 +77,7 @@ setup_project() {
     pip install -e . || error "Unable to install project dependencies ..."
 }
 
-log "Starting Setup Service"
+log "Starting Setup !!!"
 
 check_conda
 create_conda_env
