@@ -98,7 +98,7 @@ conda_init() {
     fi
 }
 
-install_conda() {
+check_conda() {
     if [ ! $(type -p conda) ]; then
         fatal_error "'conda' not found. Please install it first and re-try ..."
     else
@@ -113,11 +113,7 @@ create_conda_env() {
 
 log "Starting Setup Service"
 
-install_brew
-install_git
-setup_tpcds
-install_apache_spark
-install_conda
+check_conda
 create_conda_env
 
 log "All done !!"
