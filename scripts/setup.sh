@@ -40,7 +40,7 @@ Examples:
 HEREDOC
 }
 
-progname=$(basename $0)
+progname=$(basename "$0")
 env_name='bdrp'
 
 #Get all the arguments and update accordingly
