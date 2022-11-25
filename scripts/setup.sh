@@ -21,15 +21,22 @@ error () {
 function usage()
 {
 cat << HEREDOC
-Setup for TPC-DS benchmark
+
+Setup for BDRP project
+
 Usage: 
     
     $progname [OPTION] [Value]
+
 Options:
+
     -h, --help              Show usage
+
 Examples:
+
     $ $progname
-    ⚐ → Installs all dependencies for your TPC-DS project.
+    ⚐ → Installs all dependencies for your BDRP project.
+
 HEREDOC
 }
 
