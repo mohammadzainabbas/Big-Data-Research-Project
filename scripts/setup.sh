@@ -77,5 +77,6 @@ log "Starting Setup Service"
 
 check_conda
 create_conda_env
+setup_project
 
 log "All done !!"
