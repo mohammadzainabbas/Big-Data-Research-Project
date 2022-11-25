@@ -87,17 +87,6 @@ install_apache_spark() {
     fi
 }
 
-conda_init() {
-    conda init --all || error "Unable to conda init ..."
-    if [[ $SHELL == *"zsh"* ]]; then
-        . ~/.zshrc
-    elif [[ $SHELL == *"bash"* ]]; then
-        . ~/.bashrc
-    else
-        error "Please restart your shell to see effects"
-    fi
-}
-
 check_conda() {
     if [ ! $(type -p conda) ]; then
         fatal_error "'conda' not found. Please install it first and re-try ..."
