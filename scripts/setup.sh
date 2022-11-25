@@ -22,7 +22,7 @@ function usage()
 {
 cat << HEREDOC
 
-Setup for BDRP project
+Setup for Big Data Research Project
 
 Usage: 
     
@@ -41,7 +41,7 @@ HEREDOC
 }
 
 progname=$(basename $0)
-env_name='pyspark_env'
+env_name='bdrp'
 
 #Get all the arguments and update accordingly
 while [[ "$#" -gt 0 ]]; do
