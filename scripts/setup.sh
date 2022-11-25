@@ -27,7 +27,7 @@ function usage()
 {
 cat << HEREDOC
 
-Setup for Big Data Research Project
+Setup env for Big Data Research Project
 
 Usage: 
     
