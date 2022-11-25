@@ -17,6 +17,11 @@ error () {
     echo "[[ error ]] $1"
 }
 
+fatal_error () {
+    error "$1"
+    exit 1
+}
+
 #Function that shows usage for this script
 function usage()
 {
