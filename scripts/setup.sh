@@ -83,6 +83,7 @@ log "Checking for 'conda' ..."
 check_conda
 log "Creating a new 'conda' env ..."
 create_conda_env
+log "Setup the project ..."
 setup_project
 
 log "All done !!"
