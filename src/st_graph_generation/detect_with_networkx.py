@@ -13,7 +13,7 @@ from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 from dataclasses import dataclass, field
 
-path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking")
+path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/")
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
@@ -25,7 +25,6 @@ from utils.plots import plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
 
 from sort import *
-
 
 def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None):
     """
@@ -317,7 +316,7 @@ def detect(save_img=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7_with_object_tracking/yolov7.pt")
+    model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7.pt")
     
     parser.add_argument('--weights', nargs='+', type=str, default=model_path, help='model.pt path(s)')
     parser.add_argument('--source', type=str, default='inference/images', help='source')  # file/folder, 0 for webcam
