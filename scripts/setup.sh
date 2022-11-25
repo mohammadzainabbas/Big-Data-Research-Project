@@ -60,33 +60,6 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-install_brew() {
-    if [ ! $(type -p brew) ]; then
-        error "'brew' not found. Installing it now ..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    else
-        log "'brew' found ..."
-    fi
-}
-
-install_git() {
-    if [ ! $(type -p git) ]; then
-        error "'git' not found. Installing it now ..."
-        brew install git
-    else
-        log "'git' found ..."
-    fi
-}
-
-install_apache_spark() {
-    if [ ! $(type -p spark-submit) ]; then
-        error "'apache-spark' not found. Installing it now ..."
-        brew install apache-spark
-    else
-        log "'apache-spark' found ..."
-    fi
-}
-
 check_conda() {
     if [ ! $(type -p conda) ]; then
         fatal_error "'conda' not found. Please install it first and re-try ..."
