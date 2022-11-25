@@ -100,8 +100,7 @@ conda_init() {
 
 install_conda() {
     if [ ! $(type -p conda) ]; then
-        error "'anaconda' not found. Installing it now ..."
-        brew install --cask anaconda && conda_init
+        fatal_error "'conda' not found. Installing it now ..."
     else
         log "'anaconda' found ..."
     fi
