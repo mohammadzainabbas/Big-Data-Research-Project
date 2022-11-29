@@ -28,7 +28,7 @@ In order to start, we'd recommend you to clone with all the submodule(s), simply
 git clone --recurse-submodules -j8 https://github.com/mohammadzainabbas/Big-Data-Research-Project.git
 ```
 
-and then run the following to `setup env` and installing the package locally:
+and then run the following to setup env and installing the package locally:
 
 ```bash
 sh scripts/setup.sh
