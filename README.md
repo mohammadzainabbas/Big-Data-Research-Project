@@ -34,4 +34,8 @@ and then run the following to setup env and installing the package locally:
 sh scripts/setup.sh
 ```
 
+```bash
+pip install -e .
+```
+
 #
