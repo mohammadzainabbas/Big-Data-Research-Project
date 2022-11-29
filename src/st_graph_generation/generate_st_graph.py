@@ -13,10 +13,8 @@ from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 from dataclasses import dataclass, field
 
-path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/")
-
-from models.experimental import attempt_load
-from utils.datasets import LoadStreams, LoadImages
+from src.models.experimental import attempt_load
+from src.utils.datasets import LoadStreams, LoadImages
 from utils.general import check_img_size, check_requirements, \
                 check_imshow, non_max_suppression, apply_classifier, \
                 scale_coords, xyxy2xywh, strip_optimizer, set_logging, \
