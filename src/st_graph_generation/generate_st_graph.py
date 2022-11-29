@@ -13,16 +13,16 @@ from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 from dataclasses import dataclass, field
 
-from src.models.experimental import attempt_load
-from src.utils.datasets import LoadStreams, LoadImages
-from utils.general import check_img_size, check_requirements, \
+from src.object_detection.models.experimental import attempt_load
+from src.object_detection.utils.datasets import LoadStreams, LoadImages
+from src.object_detection.utils.general import check_img_size, check_requirements, \
                 check_imshow, non_max_suppression, apply_classifier, \
                 scale_coords, xyxy2xywh, strip_optimizer, set_logging, \
                 increment_path
-from utils.plots import plot_one_box
-from utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
+from src.object_detection.utils.plots import plot_one_box
+from src.object_detection.utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
 
-from sort import *
+from src.object_detection.sort import *
 
 def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None):
     """
