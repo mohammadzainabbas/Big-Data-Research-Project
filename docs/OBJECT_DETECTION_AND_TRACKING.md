@@ -39,11 +39,15 @@ classes = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train',
 
 </details>
 
+<a id="detection-output" />
+
+### 2. Output of object detection
+
 
 
 <a id="object-tracking" />
 
-### 2. Object tracking
+### 3. Object tracking
 
 
 
