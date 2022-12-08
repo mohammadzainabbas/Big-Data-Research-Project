@@ -13,6 +13,8 @@ from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 from dataclasses import dataclass, field
 
+parent_dir = Path(__file__).resolve().parents[2]
+
 path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/")
 
 from models.experimental import attempt_load
