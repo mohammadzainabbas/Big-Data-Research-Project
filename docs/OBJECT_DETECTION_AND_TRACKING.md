@@ -21,6 +21,8 @@ There are [several models](https://github.com/WongKinYiu/yolov7#performance) whi
 
 #### 1.1. Yolov7
 
+`Yolov7` is 
+
 <a id="object-tracking" />
 
 ### 2. Object tracking
