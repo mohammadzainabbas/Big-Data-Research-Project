@@ -422,7 +422,7 @@ def load_frames_from_video(model: Any, opt: Dict[str, Any], delta_time: int = 1)
             # Convert
             img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
             img = np.ascontiguousarray(img)
-            images.append((model, opt, img, image, sort_tracker))
+            images.append((model, opt, img, image))
     return images
 
 def main(opt: Namespace):
