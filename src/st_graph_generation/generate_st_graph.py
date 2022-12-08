@@ -6,7 +6,7 @@ import cv2
 import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
-from sys import path, exit
+from sys import path
 from scipy.spatial import distance
 
 from typing import List, Tuple, Dict, Any, Union
@@ -317,7 +317,8 @@ def detect(save_img=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    model_path = join("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/yolov7.pt")
+    path.append(join(src_dir, "object_detection"))
+    model_path = join("object_detection/yolov7.pt")
     
     parser.add_argument('--weights', nargs='+', type=str, default=model_path, help='model.pt path(s)')
     parser.add_argument('--source', type=str, default='inference/images', help='source')  # file/folder, 0 for webcam
