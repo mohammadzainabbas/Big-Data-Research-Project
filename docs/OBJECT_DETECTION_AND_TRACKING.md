@@ -4,6 +4,7 @@
 
 - [Object detection](#object-detection)
   * [Yolov7](#yolov7)
+  * [output](#detection-output)
 - [Object tracking](#object-tracking)
   * [Kalman Filter](#kalman-filter)
 
