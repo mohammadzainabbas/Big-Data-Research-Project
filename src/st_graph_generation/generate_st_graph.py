@@ -10,6 +10,7 @@ from sys import path
 from scipy.spatial import distance
 
 import multiprocessing as mp 
+from argparse import Namespace
 
 from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
