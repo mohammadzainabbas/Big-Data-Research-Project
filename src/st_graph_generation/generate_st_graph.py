@@ -113,6 +113,21 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
 
     return img, graph
 
+def generate_temporal_graph(graph, frame_id):
+    """
+    Construct a temporal graph from the spatial graph
+    """
+    if frame_id == 0:
+        return graph
+
+    # Add edges to the graph
+    for node1 in graph.nodes:
+        for node2 in graph.nodes:
+            if node1.id == node2.id: continue
+            graph.add_edge(node1, node2, weight=distance.euclidean(node1.centroid, node2.centroid))
+
+    return graph
+
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
