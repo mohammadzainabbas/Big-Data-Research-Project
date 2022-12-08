@@ -399,7 +399,7 @@ def main(opt: Namespace):
     print("Starting to generate the spatial graphs...")
     print(f"{mp.cpu_count() = }")
     pool = mp.Pool(mp.cpu_count())
-    frames = load_frames_from_video(source)
+    frames = load_frames_from_video(source, delta_time=5)
     print(f"{len(frames) = }")
     print(f"{type(frames) = }")
     # pool.map(generate_spatial_graph_for_frame, dataset)
