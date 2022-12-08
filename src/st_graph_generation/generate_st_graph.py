@@ -181,16 +181,10 @@ def generate_spatial_graph_for_frame(model, opt, img, im0, sort_tracker):
             
             ######################################################
             if is_graph:
-                if opt.track:
-                    bbox_xyxy = tracked_dets[:,:4]
-                    identities = tracked_dets[:, 8]
-                    categories = tracked_dets[:, 4]
-                    confidences = tracked_dets[:, 5]
-                else:
-                    bbox_xyxy = dets_to_sort[:,:4]
-                    identities = [f"{x}_{frame}" for x in range(len(dets_to_sort))]
-                    categories = dets_to_sort[:, 5]
-                    confidences = dets_to_sort[:, 4]
+                bbox_xyxy = dets_to_sort[:,:4]
+                identities = [f"{x}_{frame}" for x in range(len(dets_to_sort))]
+                categories = dets_to_sort[:, 5]
+                confidences = dets_to_sort[:, 4]
                 
                 im0, graph = generate_spatial_graph(im0, bbox_xyxy, identities, categories, confidences, names, colors)
             ######################################################
