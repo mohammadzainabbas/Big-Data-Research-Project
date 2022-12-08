@@ -147,38 +147,6 @@ def generate_spatial_graph_for_frame(model, opt, img, im0, sort_tracker):
             dets_to_sort = np.empty((0,6))
             for x1,y1,x2,y2,conf,detclass in det.cpu().detach().numpy():
                 dets_to_sort = np.vstack((dets_to_sort, np.array([x1, y1, x2, y2, conf, detclass])))
-
-            if opt.track:
-
-                tracked_dets = sort_tracker.update(dets_to_sort, opt.unique_track_color)
-                tracks =sort_tracker.getTrackers()
-
-                # draw boxes for visualization
-                if len(tracked_dets)>0:
-                    bbox_xyxy = tracked_dets[:,:4]
-                    identities = tracked_dets[:, 8]
-                    categories = tracked_dets[:, 4]
-                    confidences = None
-
-                    if opt.show_track:
-                        #loop over tracks
-                        for t, track in enumerate(tracks):
-                
-                            track_color = colors[int(track.detclass)] if not opt.unique_track_color else sort_tracker.color_list[t]
-
-                            [cv2.line(im0, (int(track.centroidarr[i][0]),
-                                            int(track.centroidarr[i][1])), 
-                                            (int(track.centroidarr[i+1][0]),
-                                            int(track.centroidarr[i+1][1])),
-                                            track_color, thickness=opt.thickness) 
-                                            for i,_ in  enumerate(track.centroidarr) 
-                                                if i < len(track.centroidarr)-1 ] 
-            else:
-                bbox_xyxy = dets_to_sort[:,:4]
-                identities = None
-                categories = dets_to_sort[:, 5]
-                confidences = dets_to_sort[:, 4]
-            
             ######################################################
             if is_graph:
                 bbox_xyxy = dets_to_sort[:,:4]
