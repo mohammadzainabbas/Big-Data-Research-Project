@@ -6,7 +6,7 @@ import cv2
 import torch
 import torch.backends.cudnn as cudnn
 from numpy import random
-from sys import path
+from sys import path, exit
 from scipy.spatial import distance
 
 from typing import List, Tuple, Dict, Any, Union
@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 
 parent_dir = Path(__file__).resolve().parents[2]
 print(parent_dir)
+exit()
 
 path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/")
 
