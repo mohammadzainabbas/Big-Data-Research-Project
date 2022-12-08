@@ -321,8 +321,10 @@ def detect(save_img=False):
     return graphs
 
 def main(opt: Namespace):
-    source, weights, show_results, imgsz, trace = opt.source, opt.weights, opt.show_results, opt.img_size, not opt.no_trace
-    webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(('rtsp://', 'rtmp://', 'http://', 'https://'))
+    source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
+    save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
+    webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
+        ('rtsp://', 'rtmp://', 'http://', 'https://'))
     save_dir = Path(increment_path(Path(opt.project) / opt.name, exist_ok=opt.exist_ok))  # increment run
     if not opt.nosave:  
         (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
@@ -342,6 +344,38 @@ def main(opt: Namespace):
 
     if half:
         model.half()  # to FP16
+
+    # Second-stage classifier
+    classify = False
+    if classify:
+        modelc = load_classifier(name='resnet101', n=2)  # initialize
+        modelc.load_state_dict(torch.load('weights/resnet101.pt', map_location=device)['model']).to(device).eval()
+
+    # Set Dataloader
+    vid_path, vid_writer = None, None
+    if webcam:
+        view_img = check_imshow()
+        cudnn.benchmark = True  # set True to speed up constant image size inference
+        dataset = LoadStreams(source, img_size=imgsz, stride=stride)
+    else:
+        dataset = LoadImages(source, img_size=imgsz, stride=stride)
+
+    # Get names and colors
+    names = model.module.names if hasattr(model, 'module') else model.names
+    colors = [[random.randint(0, 255) for _ in range(3)] for _ in names]
+
+    # Run inference
+    if device.type != 'cpu':
+        model(torch.zeros(1, 3, imgsz, imgsz).to(device).type_as(next(model.parameters())))  # run once
+    old_img_w = old_img_h = imgsz
+    old_img_b = 1
+
+    t0 = time.time()
+    ###################################
+    startTime = 0
+    ###################################
+
+    
 
 
 
