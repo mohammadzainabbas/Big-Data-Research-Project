@@ -322,7 +322,7 @@ def detect(save_img=False):
 
 from PIL import Image
 
-def load_frames_from_video(video_path: Path, delta_time: int) -> List[Any]:
+def load_frames_from_video(video_path: Path, delta_time: int = 1) -> List[Any]:
     # Load video
     vid_cap = cv2.VideoCapture(str(video_path))
     assert vid_cap.isOpened(), f'Failed to open {video_path}'
@@ -334,13 +334,12 @@ def load_frames_from_video(video_path: Path, delta_time: int) -> List[Any]:
     length = int(vid_cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Read video
-    images = []
+    images = list()
     for i in range(length):
         _, image = vid_cap.read()
         if i % delta_time == 0:
             images.append(image)
     return images
-
 
 def main(opt: Namespace):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
