@@ -486,6 +486,10 @@ def main(opt: Namespace):
     print(f"{time.time() - t0 = }")
     pool.close()
 
+    print(f"{len(results) = }")
+    print(f"{type(results) = }")
+    print(f"{type(results[0]) = }")
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     model_path = join(src_dir, "object_detection", "yolov7.pt")
