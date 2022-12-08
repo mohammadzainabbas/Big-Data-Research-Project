@@ -130,7 +130,6 @@ def generate_spatial_graph_for_frame(model, opt, img):
             p, s, frame = path, '', getattr(opt, 'frame', 0)
 
             p = Path(p)  # to Path
-            gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if len(det):
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0.shape).round()
