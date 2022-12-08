@@ -21,7 +21,7 @@ There are [several models](https://github.com/WongKinYiu/yolov7#performance) whi
 
 #### 1.1. Yolov7
 
-`YOLOv7` surpasses all known object detectors in both speed and accuracy in the range from 5 FPS to 160 FPS and has the highest accuracy 56.8% AP among all known real-time object detectors with 30 FPS or higher on GPU V100.
+`YOLOv7` surpasses all known object detectors in both speed and accuracy in the range from `5` FPS to `160` FPS and has the highest accuracy `56.8%` AP among all known real-time object detectors with `30` FPS or higher on GPU V100.
 
 <a id="object-tracking" />
 
