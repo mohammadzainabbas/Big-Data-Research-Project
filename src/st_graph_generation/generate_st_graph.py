@@ -110,6 +110,8 @@ def generate_spatial_graph_for_frame(model, opt, img):
     Construct a spatial graph from a frame
     """
     device = opt.device
+    names = opt.names
+    
     half = device.type != 'cpu'  # half precision only supported on CUDA
 
     img = torch.from_numpy(img).to(device)
