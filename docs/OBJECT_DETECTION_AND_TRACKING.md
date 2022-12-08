@@ -48,8 +48,17 @@ Yolov7 outputs the following things:
 - [x] Bounding box coordinates _(x1, y1, x2, y2)_
 - [x] Class name and it's confidence score
 
+Note that the coordinates are similar to OpenCV, i.e:
 
-
+```txt
+(0,0) --- X --->
+ |
+ |
+ Y
+ |
+ |
+ v
+```
 <a id="object-tracking" />
 
 ### 3. Object tracking
