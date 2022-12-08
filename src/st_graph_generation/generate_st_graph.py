@@ -188,7 +188,7 @@ def generate_spatial_graph_for_frame(model, opt, img):
                         confidences = tracked_dets[:, 5]
                     else:
                         bbox_xyxy = dets_to_sort[:,:4]
-                        identities = [f"{x}_{dataset.frame}" for x in range(len(dets_to_sort))]
+                        identities = [f"{x}_{frame}" for x in range(len(dets_to_sort))]
                         categories = dets_to_sort[:, 5]
                         confidences = dets_to_sort[:, 4]
                     
