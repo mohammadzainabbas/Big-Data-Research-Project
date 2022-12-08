@@ -320,8 +320,32 @@ def detect(save_img=False):
     print(f'Done. ({time.time() - t0:.3f}s)')
     return graphs
 
-def main(options: Namespace):
-    
+def main(opt: Namespace):
+    source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
+    save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
+    webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
+        ('rtsp://', 'rtmp://', 'http://', 'https://'))
+    save_dir = Path(increment_path(Path(opt.project) / opt.name, exist_ok=opt.exist_ok))  # increment run
+    if not opt.nosave:  
+        (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
+
+    # Initialize
+    set_logging()
+    device = select_device(opt.device)
+    half = device.type != 'cpu'  # half precision only supported on CUDA
+
+    # Load model
+    model = attempt_load(weights, map_location=device)  # load FP32 model
+    stride = int(model.stride.max())  # model stride
+    imgsz = check_img_size(imgsz, s=stride)  # check img_size
+
+    if trace:
+        model = TracedModel(model, device, opt.img_size)
+
+    if half:
+        model.half()  # to FP16
+
+
 
 
 if __name__ == '__main__':
