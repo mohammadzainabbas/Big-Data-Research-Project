@@ -25,7 +25,9 @@ There are [several models](https://github.com/WongKinYiu/yolov7#performance) whi
 
 Checkout details about `Yolov7`'s architecture and some benchmarks [here](https://arxiv.org/pdf/2207.02696.pdf).
 
-Currently, 
+Currently, the baseline model that we are using is trained to detect the following classes:
+
+
 
 <a id="object-tracking" />
 
