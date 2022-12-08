@@ -9,6 +9,8 @@ from numpy import random
 from sys import path
 from scipy.spatial import distance
 
+import multiprocessing as mp 
+
 from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 from dataclasses import dataclass, field
