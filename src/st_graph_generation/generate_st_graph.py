@@ -320,7 +320,8 @@ def detect(save_img=False):
     print(f'Done. ({time.time() - t0:.3f}s)')
     return graphs
 
-def main(options: Namespcace):
+def main(options: Namespace):
+    
 
 
 if __name__ == '__main__':
