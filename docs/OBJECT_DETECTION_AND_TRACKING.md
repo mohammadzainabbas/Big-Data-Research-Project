@@ -15,7 +15,7 @@
 
 We are using [`Yolov7`](https://github.com/WongKinYiu/yolov7) for object detection. The original paper can be found [here](https://arxiv.org/abs/2207.02696).
 
-
+There are [several models](https://github.com/WongKinYiu/yolov7#performance) which are availble for free; but for purpose, we are using  
 
 <a id="yolov7" />
 
