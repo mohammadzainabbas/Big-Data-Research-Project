@@ -109,14 +109,14 @@ def generate_spatial_graph_for_frame(opt, img):
     """
     Construct a spatial graph from a frame
     """
-    select_device(opt.device)
-    
+    device = opt.device
+    half = device.type != 'cpu'  # half precision only supported on CUDA
+
     img = torch.from_numpy(img).to(device)
     img = img.half() if half else img.float()  # uint8 to fp16/32
     img /= 255.0  # 0 - 255 to 0.0 - 1.0
     if img.ndimension() == 3:
         img = img.unsqueeze(0)
-    print(opt, img)
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
