@@ -105,7 +105,7 @@ def generate_graph_for_video(video_path, options) -> nx.Graph:
     """
     pass
 
-def generate_spatial_graph_for_frame(path, img, img0, vid_cap):
+def generate_spatial_graph_for_frame(opt, image):
     """
     Construct a spatial graph from a frame
     """
@@ -334,7 +334,7 @@ def load_frames_from_video(opt: Dict[str, Any], delta_time: int = 1) -> List[Any
     images = list()
     for i in range(nframes):
         _, image = vid_cap.read()
-        if i % delta_time == 0: images.append(image)
+        if i % delta_time == 0: images.append((opt, image))
     return images
 
 def main(opt: Namespace):
