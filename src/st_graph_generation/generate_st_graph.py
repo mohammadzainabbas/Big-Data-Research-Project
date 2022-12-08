@@ -111,7 +111,7 @@ def generate_spatial_graph_for_frame(model, opt, img):
     """
     device = opt.device
     names = opt.names
-    
+
     half = device.type != 'cpu'  # half precision only supported on CUDA
 
     img = torch.from_numpy(img).to(device)
@@ -142,11 +142,8 @@ def generate_spatial_graph_for_frame(model, opt, img):
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 dets_to_sort = np.empty((0,6))
-                # NOTE: We send in detected object class too
                 for x1,y1,x2,y2,conf,detclass in det.cpu().detach().numpy():
-                    dets_to_sort = np.vstack((dets_to_sort, 
-                                np.array([x1, y1, x2, y2, conf, detclass])))
-
+                    dets_to_sort = np.vstack((dets_to_sort, np.array([x1, y1, x2, y2, conf, detclass])))
 
                 if opt.track:
   
