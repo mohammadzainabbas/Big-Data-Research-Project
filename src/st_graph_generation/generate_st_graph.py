@@ -123,6 +123,9 @@ def generate_spatial_graph_for_frame(model, opt, img):
     pred = model(img, augment=opt.augment)[0]
     t2 = time_synchronized()
 
+    pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, classes=opt.classes, agnostic=opt.agnostic_nms)
+    t3 = time_synchronized()
+
     
 
 
