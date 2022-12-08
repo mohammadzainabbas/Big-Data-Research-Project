@@ -112,6 +112,7 @@ def generate_spatial_graph_for_frame(model, opt, img):
     device = opt.device
     names = opt.names
     colors = opt.colors
+    is_graph = opt.is_graph
 
     half = device.type != 'cpu'  # half precision only supported on CUDA
 
