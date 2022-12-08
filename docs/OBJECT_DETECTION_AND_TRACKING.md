@@ -65,3 +65,4 @@ Note that the coordinates are similar to OpenCV, i.e:
 
 We have implemented [separate module](https://github.com/mohammadzainabbas/yolov7_with_object_tracking/) for `object tracking`.
 
+Basically, we implemented few classes to represent the internal state of individual tracked objects observed as bbox.
