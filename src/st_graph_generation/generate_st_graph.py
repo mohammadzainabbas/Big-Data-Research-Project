@@ -404,7 +404,7 @@ def detect(save_img=False):
     print(f'Done. ({time.time() - t0:.3f}s)')
     return graphs
 
-def load_frames_from_video(opt: Dict[str, Any], delta_time: int = 1) -> List[Any]:
+def load_frames_from_video(model: Any, opt: Dict[str, Any], delta_time: int = 1) -> List[Any]:
     # Load video 
     vid_cap = cv2.VideoCapture(str(opt.source))
     assert vid_cap.isOpened(), f'Failed to open {opt.source}'
