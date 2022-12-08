@@ -475,6 +475,8 @@ def main(opt: Namespace):
     ###################################
     opt.device, opt.names, opt.colors = device, names, colors
     
+    opt.is_graph = True
+
     print("Starting to generate the spatial graphs...")
     print(f"{mp.cpu_count() = }")
     pool = mp.Pool(mp.cpu_count())
