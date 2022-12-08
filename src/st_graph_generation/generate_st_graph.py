@@ -154,7 +154,7 @@ def generate_spatial_graph_for_frame(model, opt, img, im0):
                 categories = dets_to_sort[:, 5]
                 confidences = dets_to_sort[:, 4]
                 
-                im0, graph = generate_spatial_graph(im0, bbox_xyxy, identities, categories, confidences, names, colors)
+                im0, graph = generate_spatial_graph(opt, im0, bbox_xyxy, identities, categories, confidences, names, colors)
             ######################################################
             # im0 = draw_boxes(im0, bbox_xyxy, identities, categories, confidences, names, colors)
             
