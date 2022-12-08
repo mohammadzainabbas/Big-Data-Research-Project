@@ -430,4 +430,4 @@ if __name__ == '__main__':
         else:
             # graphs = detect()
             main(opt)
-            print(f"Total number of graphs generated: {len(graphs)}")
+            # print(f"Total number of graphs generated: {len(graphs)}")
