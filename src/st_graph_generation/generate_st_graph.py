@@ -127,11 +127,10 @@ def generate_spatial_graph_for_frame(model, opt, img):
     t3 = time_synchronized()
 
     for i, det in enumerate(pred):  # detections per image
-            p, s, im0, frame = path, '', im0s, getattr(opt, 'frame', 0)
-
+            p, s, frame = path, '', getattr(opt, 'frame', 0)
 
             p = Path(p)  # to Path
-            save_path = str(save_dir / p.name)  # img.jpg
+            save_path = str(opt.save_dir / p.name)  # img.jpg
             txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if len(det):
