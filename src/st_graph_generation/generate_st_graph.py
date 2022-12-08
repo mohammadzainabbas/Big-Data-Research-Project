@@ -418,7 +418,7 @@ def load_frames_from_video(model: Any, opt: Dict[str, Any], delta_time: int = 1)
         _, image = vid_cap.read()
         if i % delta_time == 0:
             
-            image = letterbox(img0, self.img_size, stride=self.stride)[0]
+            image = letterbox(image, opt.img_size, stride=opt.stride)[0]
 
 
             images.append((model, opt, image))
@@ -445,7 +445,7 @@ def main(opt: Namespace):
     stride = int(model.stride.max())  # model stride
     imgsz = check_img_size(imgsz, s=stride)  # check img_size
 
-    opt.img
+    opt.img_size, opt.stride = imgsz, stride
 
     if trace:
         model = TracedModel(model, device, opt.img_size)
