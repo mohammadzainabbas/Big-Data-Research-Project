@@ -322,9 +322,8 @@ def detect(save_img=False):
 
 from PIL import Image
 
-def load_frames_from_video(video_path: Path, delta_time: int = 1) -> List[Any]:
-    # Load video
-    video_path = 
+def load_frames_from_video(opt: Dict[str, Any], delta_time: int = 1) -> List[Any]:
+    # Load video 
     vid_cap = cv2.VideoCapture(str(opt.source))
     assert vid_cap.isOpened(), f'Failed to open {opt.source}'
 
