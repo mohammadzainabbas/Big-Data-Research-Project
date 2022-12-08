@@ -416,7 +416,14 @@ def load_frames_from_video(model: Any, opt: Dict[str, Any], delta_time: int = 1)
     images = list()
     for i in range(nframes):
         _, image = vid_cap.read()
-        if i % delta_time == 0: images.append((model, opt, image))
+        if i % delta_time == 0:
+            
+            image = letterbox(img0, self.img_size, stride=self.stride)[0]
+
+
+            images.append((model, opt, image))
+
+        
     return images
 
 def main(opt: Namespace):
