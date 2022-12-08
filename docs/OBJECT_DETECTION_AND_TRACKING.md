@@ -6,7 +6,6 @@
   * [Yolov7](#yolov7)
 - [Output of object detection](#detection-output)
 - [Object tracking](#object-tracking)
-  * [Kalman Filter](#kalman-filter)
 
 #
 
@@ -64,10 +63,5 @@ Note that the coordinates are similar to OpenCV, i.e:
 
 ### 3. Object tracking
 
-We have implemented [separate module](https://github.com/mohammadzainabbas/yolov7_with_object_tracking/) for `object tracking`. 
-
-
-<a id="kalman-filter" />
-
-#### 2.1. Kalman Filter
+We have implemented [separate module](https://github.com/mohammadzainabbas/yolov7_with_object_tracking/) for `object tracking`.
 
