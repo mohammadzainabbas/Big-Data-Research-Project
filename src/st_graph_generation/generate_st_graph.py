@@ -399,9 +399,12 @@ def main(opt: Namespace):
     print(f"{mp.cpu_count() = }")
     pool = mp.Pool(mp.cpu_count())
     frames = load_frames_from_video(opt, delta_time=1)
+    print(f"{time.time() - t0 = }")
     print(f"{len(frames) = }")
     print(f"{type(frames) = }")
+    t0 = time.time()
     pool.starmap(generate_spatial_graph_for_frame, frames)
+    print(f"{time.time() - t0 = }")
     pool.close()
 
 if __name__ == '__main__':
