@@ -52,12 +52,12 @@ Note that the coordinates are similar to OpenCV, i.e:
 
 ```txt
 (0,0) --- X --->
- |
- |
- Y
- |
- |
- v
+ |  
+ |  (x1, y1)--------
+ Y      |           |
+ |      |           |
+ |       -----------(x2, y2)
+ v      
 ```
 <a id="object-tracking" />
 
