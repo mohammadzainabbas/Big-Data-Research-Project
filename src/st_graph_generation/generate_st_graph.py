@@ -105,7 +105,7 @@ def generate_graph_for_video(video_path, options) -> nx.Graph:
     """
     pass
 
-def generate_spatial_graph_for_frame(opt, img):
+def generate_spatial_graph_for_frame(model, opt, img):
     """
     Construct a spatial graph from a frame
     """
@@ -117,6 +117,10 @@ def generate_spatial_graph_for_frame(opt, img):
     img /= 255.0  # 0 - 255 to 0.0 - 1.0
     if img.ndimension() == 3:
         img = img.unsqueeze(0)
+    
+    # Inference
+    pred = model(img, augment=opt.augment)[0]
+
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
