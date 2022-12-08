@@ -321,7 +321,7 @@ def detect(save_img=False):
     return graphs
 
 def main(opt: Namespace):
-    source, weights, show_results, save_txt, imgsz, trace = opt.source, opt.weights, opt.show_results, opt.save_txt, opt.img_size, not opt.no_trace
+    source, weights, show_results, imgsz, trace = opt.source, opt.weights, opt.show_results, opt.img_size, not opt.no_trace
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
