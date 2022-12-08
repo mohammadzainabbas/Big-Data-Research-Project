@@ -9,13 +9,13 @@
 
 #
 
-<a id="create-new-env" />
+<a id="object-detection" />
 
-### 1. Create new enviornment
+### 1. Object detection
 
-<a id="new-env-mamba" />
+<a id="yolov7" />
 
-#### 1.1. Via mamba
+#### 1.1. Yolov7
 
 ```bash
 brew install mambaforge
