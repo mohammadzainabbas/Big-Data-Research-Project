@@ -64,7 +64,7 @@ Note that the coordinates are similar to OpenCV, i.e:
 
 ### 3. Object tracking
 
-Sort
+
 
 
 <a id="kalman-filter" />
