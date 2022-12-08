@@ -324,8 +324,9 @@ from PIL import Image
 
 def load_frames_from_video(video_path: Path, delta_time: int = 1) -> List[Any]:
     # Load video
-    vid_cap = cv2.VideoCapture(str(video_path))
-    assert vid_cap.isOpened(), f'Failed to open {video_path}'
+    video_path = 
+    vid_cap = cv2.VideoCapture(str(opt.source))
+    assert vid_cap.isOpened(), f'Failed to open {opt.source}'
 
     # Get video information
     nframes = int(vid_cap.get(cv2.CAP_PROP_FRAME_COUNT))
