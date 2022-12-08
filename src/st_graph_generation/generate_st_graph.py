@@ -117,7 +117,7 @@ def generate_spatial_graph_for_frame(opt, img):
     # if img.ndimension() == 3:
     #     img = img.unsqueeze(0)
     # print(opt, img)
-    sleep(1)
+    sleep(0.5)
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
