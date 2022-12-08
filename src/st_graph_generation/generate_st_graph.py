@@ -445,6 +445,8 @@ def main(opt: Namespace):
     stride = int(model.stride.max())  # model stride
     imgsz = check_img_size(imgsz, s=stride)  # check img_size
 
+    opt.img
+
     if trace:
         model = TracedModel(model, device, opt.img_size)
 
