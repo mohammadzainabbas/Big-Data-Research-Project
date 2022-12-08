@@ -473,14 +473,12 @@ def main(opt: Namespace):
     ###################################
     startTime = 0
     ###################################
+    opt.device, opt.names, opt.colors = device, names, colors
     
     print("Starting to generate the spatial graphs...")
     print(f"{mp.cpu_count() = }")
     pool = mp.Pool(mp.cpu_count())
-    opt.device = device
-    opt.names = names
-    opt.colors = colors
-    frames = load_frames_from_video(opt, delta_time=1)
+    frames = load_frames_from_video(model, opt, delta_time=1)
     print(f"{time.time() - t0 = }")
     print(f"{len(frames) = }")
     print(f"{type(frames) = }")
