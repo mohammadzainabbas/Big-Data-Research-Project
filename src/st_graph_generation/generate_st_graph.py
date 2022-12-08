@@ -398,7 +398,7 @@ def main(opt: Namespace):
     frames = load_frames_from_video(opt, delta_time=1)
     print(f"{len(frames) = }")
     print(f"{type(frames) = }")
-    pool.map(generate_spatial_graph_for_frame, frames)
+    pool.starmap(generate_spatial_graph_for_frame, frames)
     pool.close()
 
 if __name__ == '__main__':
