@@ -402,8 +402,8 @@ def main(opt: Namespace):
     frames = load_frames_from_video(source)
     print(f"{len(frames) = }")
     print(f"{type(frames) = }")
-    pool.map(generate_spatial_graph_for_frame, dataset)
-    pool.close()
+    # pool.map(generate_spatial_graph_for_frame, dataset)
+    # pool.close()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
