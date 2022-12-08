@@ -14,7 +14,6 @@ import multiprocessing as mp
 from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 
-
 src_dir = Path(__file__).resolve().parents[1]
 path.append(join(src_dir, "object_detection"))
 

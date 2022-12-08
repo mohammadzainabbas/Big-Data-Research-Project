@@ -1,5 +1,5 @@
+from dataclasses import dataclass, field
 from typing import List, Tuple, Dict, Any, Union
-
 @dataclass(unsafe_hash=True)
 class Node:
     id: int = field(default=0)
