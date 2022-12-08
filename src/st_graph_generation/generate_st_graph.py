@@ -428,5 +428,6 @@ if __name__ == '__main__':
                 graphs = detect()
                 strip_optimizer(opt.weights)
         else:
-            graphs = detect()
+            # graphs = detect()
+            main(opt)
             print(f"Total number of graphs generated: {len(graphs)}")
