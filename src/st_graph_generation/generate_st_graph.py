@@ -200,7 +200,6 @@ def generate_spatial_graph_for_frame(model, opt, img):
         print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
     return im0, graph
 
-
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
@@ -404,8 +403,6 @@ def detect(save_img=False):
         #print(f"Results saved to {save_dir}{s}")
     print(f'Done. ({time.time() - t0:.3f}s)')
     return graphs
-
-from PIL import Image
 
 def load_frames_from_video(opt: Dict[str, Any], delta_time: int = 1) -> List[Any]:
     # Load video 
