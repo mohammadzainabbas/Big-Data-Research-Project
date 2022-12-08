@@ -320,6 +320,26 @@ def detect(save_img=False):
     print(f'Done. ({time.time() - t0:.3f}s)')
     return graphs
 
+def load_video(video_path: Path) -> List[Image]:
+    # Load video
+    vid_cap = cv2.VideoCapture(str(video_path))
+    assert vid_cap.isOpened(), f'Failed to open {video_path}'
+
+    # Get video information
+    fps = int(vid_cap.get(cv2.CAP_PROP_FPS))
+    width = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    length = int(vid_cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+    # Read video
+    images = []
+    for i in range(length):
+        _, image = vid_cap.read()
+        images.append(Image(image, i, fps, width, height))
+
+    return images
+
+
 def main(opt: Namespace):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
