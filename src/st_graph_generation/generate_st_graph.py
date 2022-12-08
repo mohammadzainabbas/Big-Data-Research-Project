@@ -375,6 +375,8 @@ def main(opt: Namespace):
     startTime = 0
     ###################################
     
+    print("Starting to generate the spatial graphs...")
+    print(f"{mp.cpu_count()} = ")
     pool = mp.Pool(mp.cpu_count())
     pool.map(generate_spatial_graph_for_frame, dataset)
     pool.close()
