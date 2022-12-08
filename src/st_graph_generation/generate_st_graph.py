@@ -337,7 +337,7 @@ def load_frames_from_video(video_path: Path) -> List[Any]:
     images = []
     for i in range(length):
         _, image = vid_cap.read()
-        images.append(Image(image, i, fps, width, height))
+        images.append(image)
 
     return images
 
