@@ -14,10 +14,7 @@ import networkx as nx
 from dataclasses import dataclass, field
 
 src_dir = Path(__file__).resolve().parents[1]
-print(src_dir)
-exit()
-
-path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/")
+path.append(join(src_dir, "object_detection"))
 
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
