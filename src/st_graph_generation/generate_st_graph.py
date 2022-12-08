@@ -482,7 +482,7 @@ def main(opt: Namespace):
     print(f"{len(frames) = }")
     print(f"{type(frames) = }")
     t0 = time.time()
-    pool.starmap(generate_spatial_graph_for_frame, frames)
+    results = pool.starmap(generate_spatial_graph_for_frame, frames)
     print(f"{time.time() - t0 = }")
     pool.close()
 
