@@ -14,6 +14,8 @@ import multiprocessing as mp
 from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 
+from graph_utils import Node, Edge
+
 src_dir = Path(__file__).resolve().parents[1]
 path.append(join(src_dir, "object_detection"))
 
