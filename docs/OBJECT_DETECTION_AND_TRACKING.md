@@ -5,7 +5,7 @@
 - [Object detection](#object-detection)
   * [Yolov7](#yolov7)
 - [Object tracking](#object-tracking)
-  * [Via conda](#new-env-conda)
+  * [Kalman Filter](#kalman-filter)
 
 #
 
