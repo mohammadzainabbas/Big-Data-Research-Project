@@ -320,6 +320,8 @@ def detect(save_img=False):
     print(f'Done. ({time.time() - t0:.3f}s)')
     return graphs
 
+from PIL import Image
+
 def load_video(video_path: Path) -> List[Image]:
     # Load video
     vid_cap = cv2.VideoCapture(str(video_path))
