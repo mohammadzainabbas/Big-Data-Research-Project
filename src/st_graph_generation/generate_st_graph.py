@@ -328,11 +328,11 @@ def load_frames_from_video(video_path: Path, delta_time: int = 1) -> List[Any]:
     assert vid_cap.isOpened(), f'Failed to open {video_path}'
 
     # Get video information
-    length = int(vid_cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    nframes = int(vid_cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Read video
     images = list()
-    for i in range(length):
+    for i in range(nframes):
         _, image = vid_cap.read()
         if i % delta_time == 0: images.append(image)
     return images
