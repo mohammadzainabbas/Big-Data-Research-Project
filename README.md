@@ -43,4 +43,8 @@ pip install -e .
 python src/st_graph_generation/detect_with_networkx.py --no-trace --view-img --source test/street.mp4 --show-fps --seed 2 --track --show-track --project data --name live_graph
 ```
 
+```bash
+python src/st_graph_generation/generate_st_graph.py --no-trace --view-img --source test/street.mp4 --show-fps --seed 2 --track --show-track --project data --name live_graph
+```
+
 #
