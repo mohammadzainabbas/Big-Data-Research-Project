@@ -64,7 +64,7 @@ Note that the coordinates are similar to OpenCV, i.e:
 
 ### 3. Object tracking
 
-
+We have implemented [separate module](https://github.com/mohammadzainabbas/yolov7_with_object_tracking/) for `object tracking`. 
 
 
 <a id="kalman-filter" />
