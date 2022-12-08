@@ -417,11 +417,12 @@ def load_frames_from_video(model: Any, opt: Dict[str, Any], delta_time: int = 1)
     for i in range(nframes):
         _, image = vid_cap.read()
         if i % delta_time == 0:
+            # Padded resize
             img = letterbox(image, opt.img_size, stride=opt.stride)[0]
+            # Convert
+            img = img[:, :, ::-1].transpose(2, 0, 1)  # BGR to RGB, to 3x416x416
+            img = np.ascontiguousarray(img)
             
-            
-
-
             images.append((model, opt, img))
 
         
