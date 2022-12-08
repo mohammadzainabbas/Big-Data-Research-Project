@@ -105,19 +105,16 @@ def generate_graph_for_video(video_path, options) -> nx.Graph:
     """
     pass
 
-from time import sleep
-
 def generate_spatial_graph_for_frame(opt, img):
     """
     Construct a spatial graph from a frame
     """
-    # img = torch.from_numpy(img).to(device)
-    # img = img.half() if half else img.float()  # uint8 to fp16/32
-    # img /= 255.0  # 0 - 255 to 0.0 - 1.0
-    # if img.ndimension() == 3:
-    #     img = img.unsqueeze(0)
-    # print(opt, img)
-    sleep(0.5)
+    img = torch.from_numpy(img).to(device)
+    img = img.half() if half else img.float()  # uint8 to fp16/32
+    img /= 255.0  # 0 - 255 to 0.0 - 1.0
+    if img.ndimension() == 3:
+        img = img.unsqueeze(0)
+    print(opt, img)
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
