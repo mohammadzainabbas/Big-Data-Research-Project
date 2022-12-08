@@ -67,3 +67,6 @@ We have implemented [separate module](https://github.com/mohammadzainabbas/yolov
 
 Basically, we implemented [a class](https://github.com/mohammadzainabbas/yolov7_with_object_tracking/blob/main/sort.py#L75-L162) to represent the internal state of individual tracked objects observed as bounding box.
 
+We use [this class](https://github.com/mohammadzainabbas/yolov7_with_object_tracking/blob/main/sort.py#L214-L287) to associate trackers for each individual item/object that was detected by the `Yolov7`.
+
+#
