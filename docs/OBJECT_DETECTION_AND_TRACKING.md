@@ -13,7 +13,7 @@
 
 ### 1. Object detection
 
-We are using `Yolov7` for object detection.
+We are using [`Yolov7`](https://github.com/WongKinYiu/yolov7) for object detection.
 
 <a id="yolov7" />
 
