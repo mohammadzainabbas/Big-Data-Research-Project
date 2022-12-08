@@ -377,9 +377,7 @@ def main(opt: Namespace):
     
     pool = mp.Pool(mp.cpu_count())
     pool.map(generate_spatial_graph_for_frame, dataset)
-
-
-
+    pool.close()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
