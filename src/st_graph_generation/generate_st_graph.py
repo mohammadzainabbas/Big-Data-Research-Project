@@ -113,7 +113,7 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
 
     return img, graph
 
-def generate_spatial_graph_for_frame(img):
+def generate_spatial_graph_for_frame(img, device, half):
     """
     Construct a spatial graph from a frame
     """
