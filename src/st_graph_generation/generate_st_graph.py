@@ -13,7 +13,7 @@ import multiprocessing as mp
 
 from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
-from dataclasses import dataclass, field
+
 
 src_dir = Path(__file__).resolve().parents[1]
 path.append(join(src_dir, "object_detection"))
@@ -54,22 +54,6 @@ def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, 
             cv2.rectangle(img, (x1, y1), c2, color, -1, cv2.LINE_AA)  # filled
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
     return img
-
-@dataclass(unsafe_hash=True)
-class Node:
-    id: int = field(default=0)
-    x1: int = field(default=0)
-    y1: int = field(default=0)
-    x2: int = field(default=0)
-    y2: int = field(default=0)
-    conf: float = field(default=float(0))
-    detclass: int = field(default=0)
-    class_name: str = field(default="")
-    centroid: tuple = field(default=(0, 0))
-
-@dataclass(unsafe_hash=True)
-class Edge:
-    weight: Union[float, int] = field(default=0)
 
 def generate_spatial_graph(img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None):
     """
