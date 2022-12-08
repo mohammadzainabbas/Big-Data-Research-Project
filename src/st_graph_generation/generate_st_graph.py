@@ -125,7 +125,9 @@ def generate_spatial_graph_for_frame(model, opt, img, im0):
     
     # Inference
     t1 = time_synchronized()
+    start_time = time.time()
     pred = model(img, augment=opt.augment)[0]
+    print(f"Time taken for inference: {time.time() - start_time} seconds")
     t2 = time_synchronized()
 
     pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, classes=opt.classes, agnostic=opt.agnostic_nms)
