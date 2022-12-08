@@ -105,7 +105,7 @@ def generate_graph_for_video(video_path, options) -> nx.Graph:
     """
     pass
 
-def generate_spatial_graph_for_frame(model, opt, img, im0, sort_tracker):
+def generate_spatial_graph_for_frame(model, opt, img, im0):
     """
     Construct a spatial graph from a frame
     """
