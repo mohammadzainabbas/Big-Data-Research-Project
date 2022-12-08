@@ -376,7 +376,7 @@ def main(opt: Namespace):
     ###################################
     
     pool = mp.Pool(mp.cpu_count())
-    
+    pool.map(generate_spatial_graph_for_frame, dataset)
 
 
 
