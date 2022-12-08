@@ -319,6 +319,9 @@ def detect(save_img=False):
     print(f'Done. ({time.time() - t0:.3f}s)')
     return graphs
 
+def main(options: Namespcace):
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     model_path = join(src_dir, "object_detection", "yolov7.pt")
