@@ -126,7 +126,118 @@ def generate_spatial_graph_for_frame(model, opt, img):
     pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, classes=opt.classes, agnostic=opt.agnostic_nms)
     t3 = time_synchronized()
 
-    
+    for i, det in enumerate(pred):  # detections per image
+            p, s, im0, frame = path, '', im0s, getattr(opt, 'frame', 0)
+
+
+            p = Path(p)  # to Path
+            save_path = str(save_dir / p.name)  # img.jpg
+            txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # img.txt
+            gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
+            if len(det):
+                # Rescale boxes from img_size to im0 size
+                det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0.shape).round()
+
+                # Print results
+                for c in det[:, -1].unique():
+                    n = (det[:, -1] == c).sum()  # detections per class
+                    s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
+
+                dets_to_sort = np.empty((0,6))
+                # NOTE: We send in detected object class too
+                for x1,y1,x2,y2,conf,detclass in det.cpu().detach().numpy():
+                    dets_to_sort = np.vstack((dets_to_sort, 
+                                np.array([x1, y1, x2, y2, conf, detclass])))
+
+
+                if opt.track:
+  
+                    tracked_dets = sort_tracker.update(dets_to_sort, opt.unique_track_color)
+                    tracks =sort_tracker.getTrackers()
+
+                    # draw boxes for visualization
+                    if len(tracked_dets)>0:
+                        bbox_xyxy = tracked_dets[:,:4]
+                        identities = tracked_dets[:, 8]
+                        categories = tracked_dets[:, 4]
+                        confidences = None
+
+                        if opt.show_track:
+                            #loop over tracks
+                            for t, track in enumerate(tracks):
+                  
+                                track_color = colors[int(track.detclass)] if not opt.unique_track_color else sort_tracker.color_list[t]
+
+                                [cv2.line(im0, (int(track.centroidarr[i][0]),
+                                                int(track.centroidarr[i][1])), 
+                                                (int(track.centroidarr[i+1][0]),
+                                                int(track.centroidarr[i+1][1])),
+                                                track_color, thickness=opt.thickness) 
+                                                for i,_ in  enumerate(track.centroidarr) 
+                                                    if i < len(track.centroidarr)-1 ] 
+                else:
+                    bbox_xyxy = dets_to_sort[:,:4]
+                    identities = None
+                    categories = dets_to_sort[:, 5]
+                    confidences = dets_to_sort[:, 4]
+                
+                ######################################################
+                is_graph = True
+                graph = None
+                if is_graph:
+                    
+                    if opt.track:
+                        bbox_xyxy = tracked_dets[:,:4]
+                        identities = tracked_dets[:, 8]
+                        categories = tracked_dets[:, 4]
+                        confidences = tracked_dets[:, 5]
+                    else:
+                        bbox_xyxy = dets_to_sort[:,:4]
+                        identities = [f"{x}_{dataset.frame}" for x in range(len(dets_to_sort))]
+                        categories = dets_to_sort[:, 5]
+                        confidences = dets_to_sort[:, 4]
+                    
+                    im0, graph = generate_spatial_graph(im0, bbox_xyxy, identities, categories, confidences, names, colors)
+                ######################################################
+                # im0 = draw_boxes(im0, bbox_xyxy, identities, categories, confidences, names, colors)
+                
+            # Print time (inference + NMS)
+            print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
+
+            # Stream results
+            ######################################################
+            if dataset.mode != 'image' and opt.show_fps:
+                currentTime = time.time()
+
+                fps = 1/(currentTime - startTime)
+                startTime = currentTime
+                cv2.putText(im0, "FPS: " + str(int(fps)), (20, 70), cv2.FONT_HERSHEY_PLAIN, 2, (0,255,0),2)
+
+            #######################################################
+            if view_img:
+                cv2.imshow(str(p), im0)
+                cv2.waitKey(1)  # 1 millisecond
+
+            # Save results (image with detections)
+            if save_img:
+                if dataset.mode == 'image':
+                    cv2.imwrite(save_path, im0)
+                    print(f" The image with the result is saved in: {save_path}")
+                else:  # 'video' or 'stream'
+                    if vid_path != save_path:  # new video
+                        vid_path = save_path
+                        if isinstance(vid_writer, cv2.VideoWriter):
+                            vid_writer.release()  # release previous video writer
+                        if vid_cap:  # video
+                            fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                            w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                            h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                        else:  # stream
+                            fps, w, h = 30, im0.shape[1], im0.shape[0]
+                            save_path += '.mp4'
+                        vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+                    vid_writer.write(im0)
+        
 
 
 def detect(save_img=False):
