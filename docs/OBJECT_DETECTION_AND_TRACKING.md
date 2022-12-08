@@ -3,7 +3,7 @@
 ### Table of contents
 
 - [Object detection](#object-detection)
-  * [Via mamba](#new-env-mamba)
+  * [Yolov7](#yolov7)
 - [Object tracking](#object-tracking)
   * [Via conda](#new-env-conda)
 
