@@ -13,8 +13,8 @@ from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 from dataclasses import dataclass, field
 
-parent_dir = Path(__file__).resolve().parents[1]
-print(parent_dir)
+src_dir = Path(__file__).resolve().parents[1]
+print(src_dir)
 exit()
 
 path.append("/Users/mohammadzainabbas/Masters/CS/Big-Data-Research-Project/src/object_detection/")
