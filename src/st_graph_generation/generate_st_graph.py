@@ -113,7 +113,7 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
 
     return img, graph
 
-def generate_temporal_graph(graph, frame_id):
+def generate_spatial_graph_for_frame(graph, frame_id):
     """
     Construct a temporal graph from the spatial graph
     """
