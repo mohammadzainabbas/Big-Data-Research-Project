@@ -113,6 +113,7 @@ def generate_spatial_graph_for_frame(model, opt, img):
     names = opt.names
     colors = opt.colors
     is_graph = opt.is_graph
+    graph = None
                 
     half = device.type != 'cpu'  # half precision only supported on CUDA
 
@@ -179,9 +180,7 @@ def generate_spatial_graph_for_frame(model, opt, img):
                     confidences = dets_to_sort[:, 4]
                 
                 ######################################################
-                
                 if is_graph:
-                    
                     if opt.track:
                         bbox_xyxy = tracked_dets[:,:4]
                         identities = tracked_dets[:, 8]
