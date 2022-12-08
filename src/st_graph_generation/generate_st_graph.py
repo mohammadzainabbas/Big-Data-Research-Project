@@ -452,7 +452,7 @@ def main(opt: Namespace):
     print(f"{mp.cpu_count() = }")
     pool = mp.Pool(mp.cpu_count())
     frames = load_frames_from_video(model, opt, delta_time=1)
-    predict = model([img for _, _, img, _ in frames], augment=opt.augment)
+    # predict = model([img for _, _, img, _ in frames], augment=opt.augment)
     print(f"{time.time() - t0 = }")
     print(f"{len(frames) = }")
     print(f"{type(frames) = }")
