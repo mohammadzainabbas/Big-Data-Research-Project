@@ -109,6 +109,8 @@ def generate_spatial_graph_for_frame(opt, img):
     """
     Construct a spatial graph from a frame
     """
+    select_device(opt.device)
+    
     img = torch.from_numpy(img).to(device)
     img = img.half() if half else img.float()  # uint8 to fp16/32
     img /= 255.0  # 0 - 255 to 0.0 - 1.0
