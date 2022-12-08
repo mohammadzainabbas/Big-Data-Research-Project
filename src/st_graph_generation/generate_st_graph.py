@@ -57,7 +57,7 @@ def draw_boxes(img, bbox, identities=None, categories=None, confidences = None, 
             cv2.putText(img, label, (x1, y1 - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
     return img
 
-def generate_spatial_graph(img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None, opt):
+def generate_spatial_graph(opt, img, bbox, identities=None, categories=None, confidences = None, names=None, colors = None):
     """
     Construct a spatial graph from the bounding boxes, identities, categories, confidences, names and colors
     """
