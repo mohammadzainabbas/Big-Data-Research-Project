@@ -132,7 +132,7 @@ def generate_spatial_graph_for_frame(model, opt, img):
     t3 = time_synchronized()
 
     for i, det in enumerate(pred):  # detections per image
-        p, s, frame = path, '', getattr(opt, 'frame', 0)
+        p, s, frame = opt.path, '', getattr(opt, 'frame', 0)
 
         p = Path(p)  # to Path
         if len(det):
