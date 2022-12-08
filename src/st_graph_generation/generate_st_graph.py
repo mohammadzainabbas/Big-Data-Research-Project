@@ -328,9 +328,9 @@ def load_frames_from_video(video_path: Path) -> List[Any]:
     assert vid_cap.isOpened(), f'Failed to open {video_path}'
 
     # Get video information
-    fps = int(vid_cap.get(cv2.CAP_PROP_FPS))
-    width = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    # fps = int(vid_cap.get(cv2.CAP_PROP_FPS))
+    # width = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    # height = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     length = int(vid_cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Read video
