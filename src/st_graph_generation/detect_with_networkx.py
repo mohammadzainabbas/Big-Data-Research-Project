@@ -363,5 +363,7 @@ if __name__ == '__main__':
                 graphs = detect()
                 strip_optimizer(opt.weights)
         else:
+            t = time.time()
             graphs = detect()
+            print(f'Done. ({time.time() - t:.3f}s)')
             print(f"Total number of graphs generated: {len(graphs)}")
