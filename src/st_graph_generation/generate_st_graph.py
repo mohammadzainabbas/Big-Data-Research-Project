@@ -119,7 +119,11 @@ def generate_spatial_graph_for_frame(model, opt, img):
         img = img.unsqueeze(0)
     
     # Inference
+    t1 = time_synchronized()
     pred = model(img, augment=opt.augment)[0]
+    t2 = time_synchronized()
+
+    
 
 
 def detect(save_img=False):
