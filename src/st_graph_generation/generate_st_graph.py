@@ -113,11 +113,11 @@ def generate_spatial_graph(img, bbox, identities=None, categories=None, confiden
 
     return img, graph
 
-def generate_graph_for_video(video_path, options):
+def generate_graph_for_video(video_path, options) -> nx.Graph:
     """
     Construct a spatial graph from a video
     """
-    
+    pass
 
 def generate_spatial_graph_for_frame(img, device, half):
     """
