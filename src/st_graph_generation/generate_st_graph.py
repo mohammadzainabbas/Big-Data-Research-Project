@@ -477,6 +477,9 @@ def main(opt: Namespace):
     print("Starting to generate the spatial graphs...")
     print(f"{mp.cpu_count() = }")
     pool = mp.Pool(mp.cpu_count())
+    opt.device = device
+    opt.names = names
+    opt.colors = colors
     frames = load_frames_from_video(opt, delta_time=1)
     print(f"{time.time() - t0 = }")
     print(f"{len(frames) = }")
