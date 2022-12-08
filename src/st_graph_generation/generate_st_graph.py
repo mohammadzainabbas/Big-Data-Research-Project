@@ -317,8 +317,7 @@ def detect(save_img=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    path.append(join(src_dir, "object_detection"))
-    model_path = join("object_detection/yolov7.pt")
+    model_path = join(src_dir, "object_detection", "yolov7.pt")
     
     parser.add_argument('--weights', nargs='+', type=str, default=model_path, help='model.pt path(s)')
     parser.add_argument('--source', type=str, default='inference/images', help='source')  # file/folder, 0 for webcam
