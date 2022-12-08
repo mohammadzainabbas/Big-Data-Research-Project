@@ -13,7 +13,7 @@ from typing import List, Tuple, Dict, Any, Union
 import networkx as nx
 from dataclasses import dataclass, field
 
-parent_dir = Path(__file__).resolve().parents[2]
+parent_dir = Path(__file__).resolve().parents[1]
 print(parent_dir)
 exit()
 
