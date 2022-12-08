@@ -113,7 +113,8 @@ def generate_spatial_graph_for_frame(model, opt, img):
     names = opt.names
     colors = opt.colors
     is_graph = opt.is_graph
-
+    graph = nx.Graph()
+                
     half = device.type != 'cpu'  # half precision only supported on CUDA
 
     img = torch.from_numpy(img).to(device)
@@ -179,8 +180,7 @@ def generate_spatial_graph_for_frame(model, opt, img):
                     confidences = dets_to_sort[:, 4]
                 
                 ######################################################
-                is_graph = True
-                graph = None
+                
                 if is_graph:
                     
                     if opt.track:
