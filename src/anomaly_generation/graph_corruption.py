@@ -1,29 +1,71 @@
 '''
 POSSIBLE IDEAS FOR CORRUPTION (to develop, update, etc.)
 
-- change weight of the edges 
-- permutate edges (like Anograph) (if the graph is fully connected, it could be useful to change the weight of the nodes)
-- add nodes (which nodes?)
+- [only if the graph is NOT fully connected] permutate edges (like Anograph) [only if the graph is not fully connected]
+- [only if the graph is NOT fully connected] generating or removing edges
+
+- change weight of the edges
+    - for every frame, increase the speed/reduce the distance wrt to the previous frame
+- add nodes
+    - at a random time, generate a still object for the following frames #TODO
+    - at a random time, generate an object and make it move every frame #TODO
 - change boundary boxes
-- randomly change categories
+    - randomly change (increase) dimension of some randomly chosen objects in random frames #TODO
+- randomly corrupt categories
+    (- in a sequence, from the first frame where there are objects randomly choose some and corrupt their categories from that moment on
+    (- in a sequence, from a random frame where there are objects, randomly choose some and corrupt their categories from that moment on #TODO
+    (- during the sequence, whenever a new object comes out decide randomly whether to corrupt its category from that moment on
+    summary of all these options: for each frame, if the object is new decide whether to corrupt its category from that moment on
+        (optionally) if the object is not new, you can also revaluate with a smaller probability whether to corrupt its cat from that moment on
 
-removing nodes should not be interesting for generating anomalies
-
-according to the approach used for the generation of edges, generating or removing edges could be other ways to generate anomalies
 '''
-
-#TODO make these corruptive functions consistent with time (i.e. different frames of the same video should be corrupted consistently)
-# it is also possible to corrupt every frame differently AS AN ADDITIONAL GENERATION METHOD (not the main one)
-
-#TODO I miss height and width of an image
-
-#TODO the input for this script must be a list of graphs, but the graphs should be a copy (because the methods change them)
 
 import networkx as nx
 from dataclasses import dataclass, field
 from scipy.spatial import distance
 import random
 import uuid
+
+CATEGORIES = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',\
+    'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant',\
+    'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard',\
+    'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket', 'bottle',\
+    'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple', 'sandwich', 'orange', 'broccoli',\
+    'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed', 'dining table', 'toilet',\
+    'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator',\
+    'book', 'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
+
+class Corruptor:
+    def __init__(self, frame_height: int, frame_width: int, is_stg: bool) -> None:
+        self.frame_height = frame_height
+        self.frame_width = frame_width
+        self.is_stg = is_stg # if stg, the edge has only one attribute (distance). otherwise, it has two (distance and speed)
+        self.seen_nodes = dict() #TODO when a node is not there anymore, delete it from here (the id could be reassigned)
+    
+    def corrupt_graph(graph: nx.Graph):
+        copy = graph.copy()
+        #TODO corrupt copy
+        #TODO if nodes are added, provide the list of added nodes (how to know the object tracker id from Zain's code?)
+        return copy, list(["added nodes"])
+
+
+''''
+PSEUDOCODE FOR ZAIN
+for clip in video:
+    corr = Corruptor(..., ..)
+    list1 = list()
+    corr_list = list()
+
+    for frame in clip:
+        graph = nx.Graph()
+        corrupted_graph, added_nodes = corr.corrupt_graph(graph)
+        list1.append(graph)
+        corr_list.append(corrupted_graph)
+'''
+
+#TODO make it unique?
+def random_id():
+    return int(str(uuid.uuid4().fields[-1]))
 
 #TODO import this class
 @dataclass(unsafe_hash=True)
@@ -43,14 +85,6 @@ class Node:
     def boundary_box(self) -> str:
         return f"tl: ({self.x1}, {self.y1}) - br: ({self.x2}, {self.y2})"
 
-CATEGORIES = ["person", "bird", "cat", "cow", "dog", "horse", "sheep", "aeroplane", "bicycle", "boat", "bus", "car", "motorbike", "train",\
-    "bottle", "chair", "dining table", "potted plant", "sofa", "tv/monitor"
-]
-
-#TODO make it unique?
-def random_id():
-    return int(str(uuid.uuid4().fields[-1]))
-
 #TODO remove this function as soon as you have the real code
 def dummy_graph():
     graph = nx.Graph()
@@ -63,6 +97,23 @@ def dummy_graph():
                 #print(graph.edges[n1, n2]['weight'])
 
     return graph
+
+#TODO see if you can implement this or not
+# for making this function consistent in time, the set of generated nodes should be kept for the following frames
+# however, this would make the objects still
+def add_random_nodes_in(graph: nx.Graph, k: int) -> nx.Graph: #TODO missing arguments: img_width: int, img_height: int
+    # TODO decide how to connect these nodes
+    for _ in range(k):
+        id = random_id()
+        #TODO according to the meaning of x1,x2,y1,y2 you need to multiply the random percentage to the width/height of the image
+        # to get the first point, and then multiply the percentage only to the difference (the available height/width) for the other
+        x1=int(random.random()*100)
+        y1=int(random.random()*100)
+        x2=int(random.random()*100)
+        y2=int(random.random()*100)
+        category = random.choice(CATEGORIES)
+        graph.add_node(Node(id, x1, y1, x2, y2, conf=0, detclass="", class_name=category, centroid=((x1 + x2) // 2, (y1 + y2) // 2)))
+
 
 
 
@@ -89,20 +140,7 @@ def corrupt_boundary_boxes_in(graph: nx.Graph, k: int = None) -> nx.Graph:
         node.centroid = ((node.x1 + node.x2) // 2, (node.y1 + node.y2) // 2)
 
 
-# for making this function consistent in time, the set of generated nodes should be kept for the following frames
-# however, this would make the objects still
-def add_random_nodes_in(graph: nx.Graph, k: int) -> nx.Graph: #TODO missing arguments: img_width: int, img_height: int
-    # TODO decide how to connect these nodes
-    for _ in range(k):
-        id = random_id()
-        #TODO according to the meaning of x1,x2,y1,y2 you need to multiply the random percentage to the width/height of the image
-        # to get the first point, and then multiply the percentage only to the difference (the available height/width) for the other
-        x1=int(random.random()*100)
-        y1=int(random.random()*100)
-        x2=int(random.random()*100)
-        y2=int(random.random()*100)
-        category = random.choice(CATEGORIES)
-        graph.add_node(Node(id, x1, y1, x2, y2, conf=0, detclass="", class_name=category, centroid=((x1 + x2) // 2, (y1 + y2) // 2)))
+
 
 
 # TODO delete because it works only for a single frame
@@ -117,6 +155,10 @@ def corrupt_category_in(graph: nx.Graph, k: int = None) -> nx.Graph:
     
 
 
+
+
+
+
         
 
 ''' FUNCTIONS THAT ARE CURRENTLY SETTLED FOR SEQUENCE (CORRUPTING CONSISTENTLY WITH TIME)'''
@@ -124,12 +166,12 @@ def corrupt_category_in(graph: nx.Graph, k: int = None) -> nx.Graph:
 # this function is probably unaffected by the temporal sequence (a frame can have completely different weights than before)
 def corrupt_weights_in(graph: nx.Graph, k: int = None) -> nx.Graph:
     if k is None:
-        k = len(graph.edges)
-    edges_to_corrupt = random.sample(list(graph.edges(data=True)), k=k)
+        edges_to_corrupt = list(graph.edges(data=True))
+    else:
+        edges_to_corrupt = random.sample(list(graph.edges(data=True)), k=k)
 
-    for n1, n2, d in graph.edges(data=True):
-        if (n1, n2, d) in edges_to_corrupt:
-            d['weight']+=7 #TODO change update (if the weight represents the distance, for anomalies it should be increased)
+    for n1, n2, d in edges_to_corrupt:
+        d['weight']+=7 #TODO change update (if the weight represents the distance, for anomalies it should be increased)
 
 def corrupt_weights_in_sequence(graphs: list[nx.Graph]) -> list[nx.Graph]:
     for graph in graphs:
@@ -154,8 +196,6 @@ def permute_weights_in_sequence(graphs: list[nx.Graph]) -> list[nx.Graph]:
 
 
 def corrupt_category_in_sequence(graphs: list[nx.Graph]) -> list[nx.Graph]:
-    #TODO another idea
-    # - during the sequence, whenever a new object comes out decide randomly whether to corrupt its category from that moment on
     nodes_to_corr_category = dict()
     for graph in graphs:
         # choose nodes to corrupt once in a sequence and apply this corruption to the following nodes
@@ -172,6 +212,31 @@ def corrupt_category_in_sequence(graphs: list[nx.Graph]) -> list[nx.Graph]:
             if node in graph.nodes: #TODO check if this if works if the graphs are different but with node with the same id
                 node.class_name = corr_category
 
+#TODO alternative version
+def corrupt_category_in_sequence(graphs: list[nx.Graph], corruption_prob: float = 0.4) -> list[nx.Graph]:
+    nodes_to_corr_category = dict() #TODO decide whether to put the id as key
+    for graph in graphs:
+        for node in graph.nodes:
+            # if the object is new
+            if node not in nodes_to_corr_category.keys():
+                if random.random() < corruption_prob:
+                    nodes_to_corr_category[node] = random.choice(CATEGORIES)
+                else:
+                    nodes_to_corr_category[node] = node.class_name
+            node.class_name = nodes_to_corr_category[node]
+                
+
+
+#TODO remove these methods
+def test_weights(seq):
+    print([[d for _, _, d in g.edges(data=True)] for g in seq])
+    corrupt_weights_in_sequence(seq)
+    print([[d for _, _, d in g.edges(data=True)] for g in seq])
+
+def test_categories(seq):
+    print([[n.class_name for n in g.nodes] for g in seq])
+    corrupt_category_in_sequence(seq)
+    print([[n.class_name for n in g.nodes] for g in seq])
 
 
 
@@ -205,9 +270,5 @@ if __name__=='__main__':
     c = g.copy()
     c.remove_node(list(g.nodes)[0])
     l = [g, c]
-    print([[n.class_name for n in g.nodes] for g in l])
-
-    corrupt_category_in_sequence(l)
-
-    print([[n.class_name for n in g.nodes] for g in l])
-
+    
+    test_weights(l)
